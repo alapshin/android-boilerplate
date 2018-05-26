@@ -1,0 +1,14 @@
+image: alapshin/android-build-env
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - ./build.sh
+
+  artifacts:
+    paths:
+      - app/build/outputs/apk/debug/*.apk
+      - app/build/outputs/apk/release/*.apk
