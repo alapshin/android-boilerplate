@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="AppCompatMethod" severity="error"/>
+
+    <issue id="DefaultLocale" severity="error"/>
+    <issue id="DrawAllocation" severity="error"/>
+    <issue id="GradleDeprecated" severity="error"/>
+    <issue id="GradleDynamicVersion" severity="error"/>
+    <issue id="GradleOverrides" severity="error"/>
+    <issue id="HardcodedText" severity="error"/>
+    <issue id="InefficientWeight" severity="error"/>
+
+    <issue id="IconNoDpi" severity="error"/>
+    <issue id="IconXmlAndPng" severity="error"/>
+    <issue id="IconMixedNinePatch" severity="error"/>
+
+    <!-- Ignore InvalidPackage for 3rd party libraries -->
+    <issue id="InvalidPackage">
+        <ignore regexp=".*jackson.*" />
+        <ignore regexp=".*okio.*" />
+        <ignore regexp=".*retrofit2.*" />
+    </issue>
+
+    <issue id="LogConditional,LongLogTag,NewApi">
+        <ignore path="src/main/java/com/google/**/*.java"/>
+    </issue>
+
+    <issue id="ManifestOrder" severity="error"/>
+    <issue id="ObsoleteLayoutParam" severity="error"/>
+    <issue id="PrivateResource" severity="error"/>
+    <issue id="Recycle" severity="error"/>
+    <issue id="ScrollViewSize" severity="error"/>
+    <issue id="ScrollViewCount" severity="error"/>
+    <issue id="SdCardPath" severity="error"/>
+    <issue id="SetTextI18n" severity="error"/>
+    <issue id="SimpleDateFormat" severity="error"/>
+    <issue id="StateListReachable" severity="error"/>
+    <issue id="SwitchIntDef" severity="error"/>
+    <issue id="TextFields" severity="error"/>
+    <issue id="TextViewEdits" severity="error"/>
+    <issue id="TypographyDashes" severity="error"/>
+    <issue id="TypographyFractions" severity="error"/>
+    <issue id="UselessLeaf" severity="error"/>
+    <issue id="Wakelock" severity="error"/>
+</lint>

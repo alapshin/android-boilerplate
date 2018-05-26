@@ -1,0 +1,18 @@
+plugins.apply('io.gitlab.arturbosch.detekt')
+
+detekt {
+    version = versions.detekt
+    profile("main") {
+        input = "${project.projectDir}/src/main"
+        output = "${project.projectDir}/build/reports/detekt/"
+        config = "${rootProject.projectDir}/detekt-config.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    }
+}
+
+afterEvaluate {
+    def checkTask = tasks.findByName('check')
+    if (checkTask != null) {
+        checkTask.dependsOn(tasks.findByName('detektCheck'))
+    }
+}
