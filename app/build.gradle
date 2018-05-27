@@ -59,9 +59,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation libraries.support
     implementation libraries.supportappcompat
     implementation libraries.supportconstraintlayout
     implementation libraries.supportmultidex
+    implementation libraries.supportvector
+    implementation libraries.supportanimatedvector
 
     implementation (libraries.crashlytics) {
         transitive true
