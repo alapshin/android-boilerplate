@@ -8,6 +8,7 @@ buildscript {
         google()
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://maven.fabric.io/public' }
     }
 
     dependencies {
@@ -15,6 +16,8 @@ buildscript {
         classpath pluginz.kotlin
         classpath pluginz.detekt
         classpath pluginz.errorprone
+        classpath pluginz.google
+        classpath pluginz.fabric
         classpath pluginz.spotbugs
         classpath pluginz.versions
     }
@@ -24,6 +27,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
     }
 }
 

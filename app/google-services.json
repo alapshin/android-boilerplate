@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "980263900535",
+    "firebase_url": "https://boilerplate-af2ba.firebaseio.com",
+    "project_id": "boilerplate-af2ba",
+    "storage_bucket": "boilerplate-af2ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980263900535:android:9274e8f6edb26a5b",
+        "android_client_info": {
+          "package_name": "com.alapshin.boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980263900535-3trjv8uaqmac7r448ujh7v15kr8o4qib.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "980263900535-3trjv8uaqmac7r448ujh7v15kr8o4qib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4VFGiOebQSqtBUDsb8_jxRcEwqu_6idM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
