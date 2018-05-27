@@ -32,7 +32,7 @@ ext.pluginz = [
 ]
 
 ext.libraries = [
-        support                     : "com.android.support:support-v13:$versions.support",
+        support                     : "com.android.support:support-v4:$versions.support",
         supportappcompat            : "com.android.support:appcompat-v7:$versions.support",
         supportannotations          : "com.android.support:support-annotations:$versions.support",
         supportconstraintlayout     : 'com.android.support.constraint:constraint-layout:1.1.0',
@@ -40,7 +40,8 @@ ext.libraries = [
         supportexif                 : "com.android.support:exifinterface:$versions.support",
         supportmultidex             : "com.android.support:multidex:1.0.3",
         supportrecyclerview         : "com.android.support:recyclerview-v7:$versions.support",
-        supportvectordrawable       : "com.android.support:animated-vector-drawable:$versions.support",
+        supportvector               : "com.android.support:animated-vector-drawable:$versions.support",
+        supportanimatedvector       : "com.android.support:animated-vector-drawable:$versions.support",
 
         crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.2@aar',
         firebasecore                : "com.google.firebase:firebase-core:$versions.playfirebase",
