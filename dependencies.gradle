@@ -4,6 +4,7 @@ ext.versions = [
         targetSdk           : 27,
         buildTools          : '27.0.3',
 
+        playfirebase        : '16.0.0',
         support             : '27.1.1',
         supporttest         : '1.0.2',
 
@@ -22,6 +23,8 @@ ext.pluginz = [
         android          : "com.android.tools.build:gradle:3.1.2",
         detekt           : "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt",
         errorprone       : 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.14',
+        google           : 'com.google.gms:google-services:3.3.1',
+        fabric           : 'io.fabric.tools:gradle:1.25.4',
         jacoco           : 'org.jacoco:org.jacoco.core:0.7.9',
         kotlin           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
         spotbugs         : "gradle.plugin.com.github.spotbugs:gradlePlugin:1.6.0",
@@ -39,6 +42,8 @@ ext.libraries = [
         supportrecyclerview         : "com.android.support:recyclerview-v7:$versions.support",
         supportvectordrawable       : "com.android.support:animated-vector-drawable:$versions.support",
 
+        crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.2@aar',
+        firebasecore                : "com.google.firebase:firebase-core:$versions.playfirebase",
         leakcanary                  : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
         leakcanarynoop              : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",
         kotlinstdlib                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",

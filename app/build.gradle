@@ -3,6 +3,8 @@ apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.kapt'
 apply plugin: 'net.ltgt.errorprone'
 
+apply plugin: 'io.fabric'
+
 apply from: rootProject.file('gradle/checkstyle.gradle')
 apply from: rootProject.file('gradle/detekt.gradle')
 apply from: rootProject.file('gradle/findbugs.gradle')
@@ -23,7 +25,11 @@ android {
 
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "fabric_api_key", "e9c70adcc0565fff7b6bdc0086c7f5ac15a4b7e8"
     }
 
     buildTypes {
@@ -46,10 +52,6 @@ android {
         checkAllWarnings false
         // Don't treat warnings as errors
         warningsAsErrors false
-        // Use warnings baseline.
-        // See https://developer.android.com/studio/write/lint.html#snapshot
-        // See http://tools.android.com/tech-docs/lint-in-studio-2-3#TOC-Creating-a-Baseline
-        // baseline rootProject.file('lint-baseline.xml')
         lintConfig rootProject.file('lint.xml')
     }
 }
@@ -59,8 +61,14 @@ dependencies {
 
     implementation libraries.supportappcompat
     implementation libraries.supportconstraintlayout
-    implementation libraries.kotlinstdlib
+    implementation libraries.supportmultidex
 
+    implementation (libraries.crashlytics) {
+        transitive true
+    }
+    implementation libraries.firebasecore
+
+    implementation libraries.kotlinstdlib
     debugImplementation libraries.leakcanary
     releaseImplementation libraries.leakcanarynoop
 
@@ -70,3 +78,5 @@ dependencies {
     androidTestImplementation libraries.espresso
     androidTestImplementation libraries.supporttestrunner
 }
+
+apply plugin: 'com.google.gms.google-services'
