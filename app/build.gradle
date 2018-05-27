@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.alapshin.acqdemo"
+        applicationId "com.alapshin.boilerplate"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
