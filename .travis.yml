@@ -17,6 +17,10 @@ android:
 before_install:
     - yes | sdkmanager "platforms;android-27" 
 
+before_script:
+  - gpg2 --batch --decrypt --passphrase=${GPG_PASSPHRASE} --output boilerplate.jks boilerplate.jks.gpg 
+  - gpg2 --batch --decrypt --passphrase=${GPG_PASSPHRASE} --output keystore.properties keystore.properties.gpg 
+
 script: ./build.sh
 
 cache:
