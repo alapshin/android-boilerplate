@@ -4,11 +4,17 @@ apply plugin: 'org.jetbrains.kotlin.kapt'
 apply plugin: 'net.ltgt.errorprone'
 
 apply plugin: 'io.fabric'
+apply plugin: 'com.github.triplet.play'
 
 apply from: rootProject.file('gradle/helpers.gradle')
 apply from: rootProject.file('gradle/checkstyle.gradle')
 apply from: rootProject.file('gradle/detekt.gradle')
 apply from: rootProject.file('gradle/findbugs.gradle')
+
+play {
+    track = 'internal'
+    jsonFile = rootProject.file('google-play-publisher.json')
+}
 
 android {
     compileSdkVersion versions.compileSdk
