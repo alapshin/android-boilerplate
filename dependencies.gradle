@@ -27,6 +27,7 @@ ext.pluginz = [
         fabric           : 'io.fabric.tools:gradle:1.25.4',
         jacoco           : 'org.jacoco:org.jacoco.core:0.7.9',
         kotlin           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        publisher        : 'com.github.triplet.gradle:play-publisher:1.2.2',
         spotbugs         : "gradle.plugin.com.github.spotbugs:gradlePlugin:1.6.0",
         versions         : 'com.github.ben-manes:gradle-versions-plugin:0.17.0',
 ]
