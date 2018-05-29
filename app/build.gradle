@@ -5,6 +5,7 @@ apply plugin: 'net.ltgt.errorprone'
 
 apply plugin: 'io.fabric'
 
+apply from: rootProject.file('gradle/helpers.gradle')
 apply from: rootProject.file('gradle/checkstyle.gradle')
 apply from: rootProject.file('gradle/detekt.gradle')
 apply from: rootProject.file('gradle/findbugs.gradle')
@@ -23,8 +24,9 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
 
-        versionCode 1
         versionName "1.0"
+        versionCode getRevisionNumber()
+        versionNameSuffix "-" + versionCode + "." + getRevisionId()
 
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -66,6 +68,15 @@ android {
         // Don't treat warnings as errors
         warningsAsErrors false
         lintConfig rootProject.file('lint.xml')
+    }
+
+
+    // Rename resulting apk adding version code and commit hash
+    applicationVariants.all { variant ->
+        def flavor = variant.mergedFlavor
+        variant.outputs.all { output ->
+            outputFileName = "${project.name}-${variant.baseName}-${flavor.versionNameSuffix.substring(1)}.apk"
+        }
     }
 }
 

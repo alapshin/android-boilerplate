@@ -1,0 +1,36 @@
+// Gradle helpers
+
+ext {
+    getDate = this.&getDate
+    getRevisionId = this.&getRevisionId
+    getRevisionNumber = this.&getRevisionNumber
+}
+
+// Current date
+static def getDate() {
+    def date = new Date()
+    def formattedDate = date.format("yyyyMMdd'T'HHmmss")
+    return formattedDate
+}
+
+// Revision hash
+static def getRevisionId() {
+    def cmd = "git rev-parse --short HEAD"
+    def output = cmd.execute().text
+    def revisionId = output.trim()
+
+    return revisionId
+}
+
+// Revision number
+static def getRevisionNumber() {
+    def cmd = "git rev-list --count HEAD"
+    def output = cmd.execute().text
+    def revisionNumber = output.trim()
+    if (revisionNumber.isEmpty()) {
+        return 0;
+    } else {
+        return revisionNumber.replace('+', '').toInteger();
+    }
+}
+
