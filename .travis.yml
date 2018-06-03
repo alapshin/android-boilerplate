@@ -17,10 +17,7 @@ android:
 before_install:
     - yes | sdkmanager "platforms;android-27" 
 
-before_script:
-  - gpg2 --batch --decrypt --passphrase=${GPG_PASSPHRASE} --output boilerplate.jks boilerplate.jks.gpg
-  - gpg2 --batch --decrypt --passphrase=${GPG_PASSPHRASE} --output keystore.properties keystore.properties.gpg
-  - gpg2 --batch --decrypt --passphrase=${GPG_PASSPHRASE} --output google-play-publisher.json google-play-publisher.json.gpg
+before_script: ./decrypt.sh
 
 script: ./build.sh
 after_success: ./publish.sh
