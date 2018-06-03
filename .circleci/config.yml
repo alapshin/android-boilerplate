@@ -1,0 +1,25 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: alapshin/android-build-env
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run: 
+          name: Decrypt keys
+          command: ./decrypt.sh
+      - run:
+          name: Build artifacts
+          command: ./build.sh
+      - run:
+          name: Publish APK
+          command: ./publish.sh
+      - save_cache:
+          paths:
+            - ~/.gradle
+            - ~/.gradle/wrapper/
+            - ~/.android/build-cache
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
