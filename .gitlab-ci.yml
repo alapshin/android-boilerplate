@@ -6,9 +6,9 @@ stages:
 build:
   stage: build
   script:
-    - ./decrypt.sh
-    - ./build.sh
-    - ./publish.sh
+    - ci/decrypt.sh
+    - ci/build.sh
+    - ci/publish.sh
 
   artifacts:
     paths:
