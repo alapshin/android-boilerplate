@@ -23,7 +23,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'ci/decrypt.sh'
+                withCredentials([string(credentialsId: 'enc_passrphase', 
+                    variable: 'ENC_PASSPHRASE')]) {
+                    sh 'ci/decrypt.sh'
+                }
                 sh 'ci/build.sh'
             }
         }
