@@ -10,13 +10,13 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run: 
           name: Decrypt keys
-          command: ./decrypt.sh
+          command: ci/decrypt.sh
       - run:
           name: Build artifacts
-          command: ./build.sh
+          command: ci/build.sh
       - run:
           name: Publish APK
-          command: ./publish.sh
+          command: ci/publish.sh
       - save_cache:
           paths:
             - ~/.gradle

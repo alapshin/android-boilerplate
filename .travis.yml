@@ -17,10 +17,10 @@ android:
 before_install:
     - yes | sdkmanager "platforms;android-27" 
 
-before_script: ./decrypt.sh
+before_script: ci/decrypt.sh
 
-script: ./build.sh
-after_success: ./publish.sh
+script: ci/build.sh
+after_success: ci/publish.sh
 
 cache:
     directories:

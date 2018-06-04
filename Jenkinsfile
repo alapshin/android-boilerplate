@@ -23,13 +23,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh './decrypt.sh'
-                sh './build.sh'
+                sh 'ci/decrypt.sh'
+                sh 'ci/build.sh'
             }
         }
         stage('deploy') {
             steps {
-                sh './publish.sh'
+                sh 'ci/publish.sh'
             }
         }
     }
