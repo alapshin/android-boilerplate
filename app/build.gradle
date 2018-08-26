@@ -99,6 +99,7 @@ dependencies {
     implementation (libraries.crashlytics) {
         transitive true
     }
+    errorprone libraries.errorprone
     implementation libraries.firebasecore
 
     implementation libraries.kotlinstdlib

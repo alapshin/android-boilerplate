@@ -1,4 +1,4 @@
-plugins.apply('checkstyle')
+apply plugin: 'checkstyle'
 
 checkstyle {
     toolVersion = '8.8'

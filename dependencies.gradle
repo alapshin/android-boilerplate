@@ -2,17 +2,17 @@ ext.versions = [
         minSdk              : 19,
         compileSdk          : 27,
         targetSdk           : 27,
-        buildTools          : '27.0.3',
+        buildTools          : '28.0.2',
 
-        playfirebase        : '16.0.0',
+        playfirebase        : '16.0.3',
         support             : '27.1.1',
         supporttest         : '1.0.2',
 
-        detekt              : '1.0.0.RC7',
+        detekt              : '1.0.0.RC8',
         espresso            : '3.0.2',
-        kotlin              : '1.2.41',
-        leakcanary          : '1.5.4',
-        mockito             : '2.18.3',
+        kotlin              : '1.2.61',
+        leakcanary          : '1.6.1',
+        mockito             : '2.21.0',
         okhttp              : '3.10.0',
         retrofit            : '2.4.0',
         spotbugs            : "3.1.3",
@@ -20,23 +20,23 @@ ext.versions = [
 ]
 
 ext.pluginz = [
-        android          : "com.android.tools.build:gradle:3.1.2",
+        android          : "com.android.tools.build:gradle:3.2.0-rc02",
         detekt           : "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt",
-        errorprone       : 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.14',
-        google           : 'com.google.gms:google-services:3.3.1',
+        errorprone       : 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.16',
+        google           : 'com.google.gms:google-services:4.1.0',
         fabric           : 'io.fabric.tools:gradle:1.25.4',
         jacoco           : 'org.jacoco:org.jacoco.core:0.7.9',
         kotlin           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
         publisher        : 'com.github.triplet.gradle:play-publisher:1.2.2',
-        spotbugs         : "gradle.plugin.com.github.spotbugs:gradlePlugin:1.6.0",
-        versions         : 'com.github.ben-manes:gradle-versions-plugin:0.17.0',
+        spotbugs         : "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.2",
+        versions         : 'com.github.ben-manes:gradle-versions-plugin:0.20.0',
 ]
 
 ext.libraries = [
         support                     : "com.android.support:support-v4:$versions.support",
         supportappcompat            : "com.android.support:appcompat-v7:$versions.support",
         supportannotations          : "com.android.support:support-annotations:$versions.support",
-        supportconstraintlayout     : 'com.android.support.constraint:constraint-layout:1.1.0',
+        supportconstraintlayout     : 'com.android.support.constraint:constraint-layout:1.1.2',
         supportdesign               : "com.android.support:design:$versions.support",
         supportexif                 : "com.android.support:exifinterface:$versions.support",
         supportmultidex             : "com.android.support:multidex:1.0.3",
@@ -45,6 +45,7 @@ ext.libraries = [
         supportanimatedvector       : "com.android.support:animated-vector-drawable:$versions.support",
 
         crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.2@aar',
+        errorprone                  : 'com.google.errorprone:error_prone_core:2.3.1',
         firebasecore                : "com.google.firebase:firebase-core:$versions.playfirebase",
         leakcanary                  : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
         leakcanarynoop              : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",

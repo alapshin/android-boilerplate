@@ -1,4 +1,4 @@
-plugins.apply('com.github.spotbugs')
+apply plugin: 'com.github.spotbugs'
 
 spotbugs {
     toolVersion = versions.spotbugs
@@ -9,7 +9,7 @@ afterEvaluate {
     def extensionName = android.class.simpleName
     if (extensionName.startsWith("LibraryExtension")) {
         variants = android.libraryVariants
-    } else if (extensionName.startsWith("AppExtension")) {
+    } else if (extensionName.startsWith("BaseAppModuleExtension")) {
         variants = android.applicationVariants
     }
 
@@ -30,16 +30,16 @@ afterEvaluate {
             reports {
                 xml {
                     enabled = rootProject.hasProperty('ciBuild')
-                    destination = "${buildDir}/reports/findbugs/${variantName}/findbugs.xml"
+                    destination = file("${buildDir}/reports/findbugs/${variantName}/findbugs.xml")
                 }
                 html {
                     enabled = !rootProject.hasProperty('ciBuild')
-                    destination = "${buildDir}/reports/findbugs/${variantName}/findbugs.html"
+                    destination = file("${buildDir}/reports/findbugs/${variantName}/findbugs.html")
                 }
             }
 
             source = fileTree('src/main/java')
-            classes = files("${project.projectDir}/build/intermediates/classes/${variantName}")
+            classes = files("${buildDir}/intermediates/javac/${variantName}/compile${capitalizedVariantName}JavaWithJavac/classes/")
             // If somebody has an idea how to make this work with support libraries -> open a PR please.
             classpath = files()
 
