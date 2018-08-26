@@ -1,16 +1,16 @@
 package com.alapshin.boilerplate;
 
-import android.app.Application;
 import android.os.Build;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;
 
 import io.fabric.sdk.android.Fabric;
 
-public class CustomApplication extends Application {
+public class CustomApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
