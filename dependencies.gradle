@@ -1,11 +1,11 @@
 ext.versions = [
         minSdk              : 19,
-        compileSdk          : 27,
-        targetSdk           : 27,
+        compileSdk          : 28,
+        targetSdk           : 28,
         buildTools          : '28.0.2',
 
         playfirebase        : '16.0.3',
-        support             : '27.1.1',
+        support             : '28.0.0-rc02',
         supporttest         : '1.0.2',
 
         detekt              : '1.0.0.RC8',
@@ -28,7 +28,7 @@ ext.pluginz = [
         jacoco           : 'org.jacoco:org.jacoco.core:0.7.9',
         kotlin           : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
         publisher        : 'com.github.triplet.gradle:play-publisher:1.2.2',
-        spotbugs         : "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.2",
+        spotbugs         : "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.3",
         versions         : 'com.github.ben-manes:gradle-versions-plugin:0.20.0',
 ]
 
@@ -36,7 +36,7 @@ ext.libraries = [
         support                     : "com.android.support:support-v4:$versions.support",
         supportappcompat            : "com.android.support:appcompat-v7:$versions.support",
         supportannotations          : "com.android.support:support-annotations:$versions.support",
-        supportconstraintlayout     : 'com.android.support.constraint:constraint-layout:1.1.2',
+        supportconstraintlayout     : 'com.android.support.constraint:constraint-layout:1.1.3',
         supportdesign               : "com.android.support:design:$versions.support",
         supportexif                 : "com.android.support:exifinterface:$versions.support",
         supportmultidex             : "com.android.support:multidex:1.0.3",
@@ -44,7 +44,7 @@ ext.libraries = [
         supportvector               : "com.android.support:animated-vector-drawable:$versions.support",
         supportanimatedvector       : "com.android.support:animated-vector-drawable:$versions.support",
 
-        crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.2@aar',
+        crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.5@aar',
         errorprone                  : 'com.google.errorprone:error_prone_core:2.3.1',
         firebasecore                : "com.google.firebase:firebase-core:$versions.playfirebase",
         leakcanary                  : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
