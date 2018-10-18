@@ -13,7 +13,8 @@ apply from: rootProject.file('gradle/findbugs.gradle')
 
 play {
     track = 'internal'
-    jsonFile = rootProject.file('google-play-publisher.json')
+    releaseStatus = 'draft'
+    serviceAccountCredentials = rootProject.file('google-play-publisher.json')
 }
 
 android {
