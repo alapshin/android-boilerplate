@@ -48,59 +48,6 @@ subprojects {
     // To work around this limitation we store SpotBugs task type in extension property and use it when creating
     // tasks.
     project.ext.spotBugsTaskType = com.github.spotbugs.SpotBugsTask
-
-    project.plugins.whenPluginAdded { plugin ->
-        if ('net.ltgt.gradle.errorprone.ErrorPronePlugin' == plugin.class.name) {
-            project.tasks.withType(JavaCompile) {
-                // Enable Java warnings
-                options.compilerArgs += [
-                        '-Xlint:cast',
-                        '-Xlint:deprecation',
-                        '-Xlint:divzero',
-                        '-Xlint:empty',
-                        '-Xlint:fallthrough',
-                        '-Xlint:finally',
-                        '-Xlint:overrides',
-                        '-Xlint:path',
-                        '-Xlint:serial',
-                        '-Xlint:unchecked'
-                ]
-                // Adjust priority of some ErrorProne checks
-                // See http://errorprone.info/docs/flags
-                // See http://errorprone.info/bugpatterns
-                options.compilerArgs += [
-                        '-Xep:BadAnnotationImplementation:ERROR',
-                        '-Xep:BoxedPrimitiveConstructor:ERROR',
-                        '-Xep:ClassCanBeStatic:WARN',
-                        '-Xep:DefaultCharset:ERROR',
-                        '-Xep:EqualsHashCode:ERROR',
-                        '-Xep:EqualsIncompatibleType:ERROR',
-                        '-Xep:Finally:ERROR',
-                        '-Xep:ImmutableAnnotationChecker:ERROR',
-                        '-Xep:ImmutableEnumChecker:ERROR',
-                        '-Xep:IterableAndIterator:ERROR',
-                        '-Xep:MissingOverride:WARN',
-                        '-Xep:NarrowingCompoundAssignment:ERROR',
-                        '-Xep:NonOverridingEquals:ERROR',
-                        '-Xep:NullableConstructor:ERROR',
-                        '-Xep:NullablePrimitive:ERROR',
-                        '-Xep:NullableVoid:ERROR',
-                        '-Xep:TypeParameterShadowing:ERROR',
-                        '-Xep:URLEqualsHashCode:ERROR',
-                        '-Xep:ComparisonContractViolated:ERROR',
-                        '-Xep:DivZero:ERROR',
-                        '-Xep:EmptyIf:ERROR',
-                        '-Xep:NumericEquality:ERROR',
-                        '-Xep:HardCodedSdCardPath:ERROR',
-                        '-Xep:MissingDefault:ERROR',
-                        '-Xep:StaticQualifiedUsingExpression:ERROR',
-                        '-Xep:StringEquality:ERROR',
-                        '-Xep:RedundantThrows:ERROR',
-                        '-Xep:MixedArrayDimensions:ERROR',
-                ]
-            }
-        }
-    }
 }
 
 task clean(type: Delete) {

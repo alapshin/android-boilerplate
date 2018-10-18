@@ -20,7 +20,7 @@ ext.versions = [
 ext.pluginz = [
         android          : "com.android.tools.build:gradle:3.2.1",
         detekt           : "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt",
-        errorprone       : 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.16',
+        errorprone       : 'net.ltgt.gradle:gradle-errorprone-plugin:0.6',
         google           : 'com.google.gms:google-services:4.1.0',
         fabric           : 'io.fabric.tools:gradle:1.26.1',
         jacoco           : 'org.jacoco:org.jacoco.core:0.7.9',
@@ -44,6 +44,7 @@ ext.libraries = [
 
         crashlytics                 : 'com.crashlytics.sdk.android:crashlytics:2.9.5@aar',
         errorprone                  : 'com.google.errorprone:error_prone_core:2.3.2',
+        errorpronejavac             : 'com.google.errorprone:javac:9+181-r4173-1',
         firebasecore                : "com.google.firebase:firebase-core:16.0.4",
         leakcanary                  : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
         leakcanarynoop              : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",

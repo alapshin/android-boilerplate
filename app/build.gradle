@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.kapt'
-apply plugin: 'net.ltgt.errorprone'
 
 apply plugin: 'io.fabric'
 apply plugin: 'com.github.triplet.play'
@@ -9,6 +8,7 @@ apply plugin: 'com.github.triplet.play'
 apply from: rootProject.file('gradle/helpers.gradle')
 apply from: rootProject.file('gradle/checkstyle.gradle')
 apply from: rootProject.file('gradle/detekt.gradle')
+apply from: rootProject.file('gradle/errorprone.gradle')
 apply from: rootProject.file('gradle/findbugs.gradle')
 
 play {
@@ -97,6 +97,7 @@ dependencies {
         transitive true
     }
     errorprone libraries.errorprone
+    errorproneJavac libraries.errorpronejavac
     implementation libraries.firebasecore
 
     implementation libraries.kotlinstdlib
