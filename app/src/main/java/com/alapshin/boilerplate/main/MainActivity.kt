@@ -1,7 +1,7 @@
 package com.alapshin.boilerplate.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.alapshin.boilerplate.R
 
 class MainActivity : AppCompatActivity() {

@@ -3,7 +3,7 @@ package com.alapshin.boilerplate;
 import android.os.Build;
 import android.os.Handler;
 import android.os.StrictMode;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.squareup.leakcanary.LeakCanary;

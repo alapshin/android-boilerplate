@@ -34,7 +34,7 @@ android {
         versionNameSuffix "-" + versionCode + "." + getRevisionId()
 
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         resValue "string", "fabric_api_key", "e9c70adcc0565fff7b6bdc0086c7f5ac15a4b7e8"
     }
@@ -88,12 +88,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation libraries.support
     implementation libraries.supportappcompat
     implementation libraries.supportconstraintlayout
     implementation libraries.supportmultidex
-    implementation libraries.supportvector
-    implementation libraries.supportanimatedvector
+    implementation libraries.supportvectordrawable
 
     implementation (libraries.crashlytics) {
         transitive true
@@ -109,6 +107,8 @@ dependencies {
     testImplementation libraries.mockito
 
     androidTestImplementation libraries.espresso
+    androidTestImplementation libraries.supporttestcore
+    androidTestImplementation libraries.supporttestmonitor
     androidTestImplementation libraries.supporttestrunner
 }
 
