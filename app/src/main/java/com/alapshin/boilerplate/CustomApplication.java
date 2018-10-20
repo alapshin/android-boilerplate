@@ -44,10 +44,13 @@ public class CustomApplication extends MultiDexApplication {
                 .detectLeakedSqlLiteObjects();
         if (Build.VERSION.SDK_INT >= 23) {
             // Disabled due to 3rd party libraries
-            // vmBuilder.detectCleartextNetwork();
-            if (Build.VERSION.SDK_INT >= 26) {
-                vmBuilder.detectContentUriWithoutPermission();
-            }
+            vmBuilder.detectCleartextNetwork();
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            vmBuilder.detectContentUriWithoutPermission();
+        }
+        if (Build.VERSION.SDK_INT >= 28) {
+            vmBuilder.detectNonSdkApiUsage();
         }
         StrictMode.setVmPolicy(vmBuilder.build());
 
@@ -61,9 +64,9 @@ public class CustomApplication extends MultiDexApplication {
                 .detectCustomSlowCalls();
         if (Build.VERSION.SDK_INT >= 23) {
             threadBuilder.detectResourceMismatches();
-            if (Build.VERSION.SDK_INT >= 26) {
-                threadBuilder.detectUnbufferedIo();
-            }
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            threadBuilder.detectUnbufferedIo();
         }
         StrictMode.setThreadPolicy(threadBuilder.build());
     }
