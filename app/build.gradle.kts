@@ -20,8 +20,9 @@ android {
         minSdkVersion(Dependencies.Versions.minSdk)
         targetSdkVersion(Dependencies.Versions.targetSdk)
 
-        versionCode = 1
+        versionCode = Git.getRevisionNumber()
         versionName = "1.0"
+        versionNameSuffix = "-${versionCode}.${Git.getRevisionId()}"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
