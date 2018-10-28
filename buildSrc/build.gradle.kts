@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     implementation("com.android.tools.build:gradle:3.2.1")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.71")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.0")
 
     // Utility plugins
     implementation("io.fabric.tools:gradle:1.26.1")

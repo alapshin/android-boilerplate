@@ -9,7 +9,7 @@ object Versions {
     const val checkstyle = "8.8"
     const val detekt = "1.0.0.RC9.2"
     const val espresso = "3.1.0"
-    const val kotlin = "1.2.71"
+    const val kotlin = "1.3.0"
     const val leakcanary = "1.6.2"
     const val mockito = "2.23.0"
     const val okhttp = "3.10.0"

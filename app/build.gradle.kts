@@ -22,6 +22,12 @@ play {
     serviceAccountCredentials = rootProject.file("google-play-publisher.json")
 }
 
+kotlin {
+    sourceSets.configureEach {
+        languageSettings.progressiveMode = true
+    }
+}
+
 android {
     compileSdkVersion(Versions.compileSdk)
 
@@ -85,7 +91,6 @@ android {
             isTransitive = true
         }
         implementation(Libraries.firebasecore)
-
         implementation(Libraries.kotlinstdlib)
 
         debugImplementation(Libraries.leakcanary)
