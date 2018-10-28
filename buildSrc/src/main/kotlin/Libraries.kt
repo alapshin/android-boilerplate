@@ -40,8 +40,8 @@ object Libraries {
     const val robolectricmultidex = "org.robolectric:shadows-multidex:${Versions.robolectric}"
     const val robolectricsupport = "org.robolectric:shadows-supportv4:${Versions.robolectric}"
 
-    const val supporttestcore = "androidx.test:core:1.0.0-beta02"
-    const val supporttesttruth = "androidx.test.ext:truth:1.0.0-beta02"
+    const val supporttestcore = "androidx.test:core:1.0.0"
+    const val supporttesttruth = "androidx.test.ext:truth:1.0.0"
     const val supporttestrules = "androidx.test:rules:${Versions.supportTest}"
     const val supporttestrunner = "androidx.test:runner:${Versions.supportTest}"
     const val supporttestmonitor = "androidx.test:monitor:${Versions.supportTest}"
