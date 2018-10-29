@@ -90,6 +90,10 @@ android {
         implementation(Libraries.crashlytics) {
             isTransitive = true
         }
+
+        errorprone(Libraries.errorprone)
+        errorproneJavac(Libraries.errorpronejavac)
+
         implementation(Libraries.firebasecore)
         implementation(Libraries.kotlinstdlib)
 
