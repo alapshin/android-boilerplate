@@ -1,5 +1,5 @@
 object Libraries {
-    const val supportappcompat = "androidx.appcompat:appcompat:${Versions.support}"
+    const val supportappcompat = "androidx.appcompat:appcompat:1.0.2"
     const val supportannotations = "androidx.annotation:annotation:${Versions.support}"
     const val supportconstraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val supportcoordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:${Versions.support}"
@@ -7,13 +7,13 @@ object Libraries {
     const val supportfragment = "androidx.fragment:fragment:${Versions.support}"
     const val supportmultidex = "androidx.multidex:multidex:2.0.0"
     const val supportrecyclerview = "androidx.recyclerview:recyclerview:${Versions.support}"
-    const val supportvectordrawable = "androidx.vectordrawable:vectordrawable:${Versions.support}"
+    const val supportvectordrawable = "androidx.vectordrawable:vectordrawable:1.0.1"
     const val supportviewpager = "androidx.viewpager:viewpager:${Versions.support}"
 
-    const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.5@aar"
+    const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.7@aar"
     const val errorprone = "com.google.errorprone:error_prone_core:2.3.2"
     const val errorpronejavac = "com.google.errorprone:javac:9+181-r4173-1"
-    const val firebasecore = "com.google.firebase:firebase-core:16.0.4"
+    const val firebasecore = "com.google.firebase:firebase-core:16.0.6"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
     const val leakcanarynoop = "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakcanary}"
     const val kotlinstdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
