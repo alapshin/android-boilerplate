@@ -46,7 +46,7 @@ afterEvaluate {
             excludeFilter = rootProject.file("findbugs-filter.xml")
 
             reports {
-                xml.isEnabled = true
+                xml.isEnabled = false
                 xml.destination = file("${buildDir}/reports/findbugs/${variantName}/findbugs.xml")
                 html.isEnabled = true
                 html.destination = file("${buildDir}/reports/findbugs/${variantName}/findbugs.html")
