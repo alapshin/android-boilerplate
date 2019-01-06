@@ -112,6 +112,9 @@ android {
         testImplementation(Libraries.mockito)
 
         androidTestImplementation(Libraries.espresso)
+        androidTestImplementation(Libraries.espressocontrib)
+        androidTestImplementation(Libraries.espressointents)
+        androidTestImplementation(Libraries.espressookhttpidlingresource)
         androidTestImplementation(Libraries.supporttestcore)
         androidTestImplementation(Libraries.supporttestmonitor)
         androidTestImplementation(Libraries.supporttestrunner)
