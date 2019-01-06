@@ -13,7 +13,7 @@ plugins {
     id("detekt-config")
     id("checkstyle-config")
     id("errorprone-config")
-    id("spotbugs-android-plugin")
+    id("spotbugs-android-config")
 }
 
 play {

@@ -54,7 +54,7 @@ afterEvaluate {
         }
 
         tasks.named("check").configure {
-            dependsOn(tasks.named("checkstyle"))
+            dependsOn(tasks.named("findbugs${capitalizedVariantName}"))
         }
     }
 }
