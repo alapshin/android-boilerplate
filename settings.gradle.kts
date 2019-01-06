@@ -1,3 +1,7 @@
+rootProject.buildFileName = "build.gradle.kts"
+
+include(":app")
+
 pluginManagement {
     repositories {
         google()
@@ -25,6 +29,3 @@ pluginManagement {
         }
     }
 }
-include(":app")
-
-rootProject.buildFileName = "build.gradle.kts"
