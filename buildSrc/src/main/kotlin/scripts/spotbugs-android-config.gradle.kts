@@ -32,7 +32,6 @@ afterEvaluate {
     }
 
     variants?.forEach { variant ->
-
         val variantName = variant.name
         val capitalizedVariantName = variant.name.capitalize()
 
@@ -55,6 +54,9 @@ afterEvaluate {
 
         tasks.named("check").configure {
             dependsOn(tasks.named("findbugs${capitalizedVariantName}"))
+        }
+        tasks.named("findbugs${capitalizedVariantName}").configure {
+            dependsOn(tasks.named("compile${capitalizedVariantName}Sources"))
         }
     }
 }
