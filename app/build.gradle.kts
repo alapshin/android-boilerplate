@@ -5,15 +5,13 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+    id("androidx.navigation.safeargs.kotlin")
 
     id("io.fabric")
     id("com.github.triplet.play")
 
     id("deps-updates")
     id("detekt-config")
-    id("checkstyle-config")
-    id("errorprone-config")
-    id("spotbugs-android-config")
 }
 
 play {
@@ -36,6 +34,8 @@ android {
         setTargetCompatibility(JavaVersion.VERSION_1_8)
     }
 
+    sourceSets["main"].java.srcDir("src/main/kotlin")
+
     defaultConfig {
         applicationId = "com.alapshin.boilerplate"
         minSdkVersion(Versions.minSdk)
@@ -44,6 +44,8 @@ android {
         versionCode = Git.getRevisionNumber()
         versionName = "1.0"
         versionNameSuffix = "-${versionCode}.${Git.getRevisionId()}"
+
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         resValue("string", "fabric_api_key", "e9c70adcc0565fff7b6bdc0086c7f5ac15a4b7e8")
@@ -87,26 +89,44 @@ android {
     }
 
     dependencies {
+        implementation(Libraries.androidxcorektx)
+        implementation(Libraries.androidxconstraintlayout)
+        implementation(Libraries.androidxfragmentktx)
+        implementation(Libraries.androidxmultidex)
+        implementation(Libraries.androidxrecyclerview)
+        implementation(Libraries.materialdesign)
+
         implementation(Libraries.crashlytics) {
             isTransitive = true
         }
-
-        errorprone(Libraries.errorprone)
-        errorproneJavac(Libraries.errorpronejavac)
-
+        implementation(Libraries.dagger)
+        implementation(Libraries.daggerandroid)
+        implementation(Libraries.daggerandroidsupport)
+        kapt(Libraries.daggercompiler)
+        kapt(Libraries.daggerandroidprocessor)
         implementation(Libraries.firebasecore)
+        implementation(Libraries.glide)
+        kapt(Libraries.glidecompiler)
+        implementation(Libraries.glideokhttp)
         implementation(Libraries.kotlinstdlib)
+        implementation(Libraries.lifecycle)
+        implementation(Libraries.lifecyclereactivektx)
+        implementation(Libraries.moshi)
+        kapt(Libraries.moshicodegen)
+        implementation(Libraries.navigationuiktx)
+        implementation(Libraries.navigationfragmentktx)
+        implementation(Libraries.okhttp)
+        implementation(Libraries.retrofit)
+        implementation(Libraries.retrofitmoshi)
+        implementation(Libraries.retrofitrxjava2)
+        implementation(Libraries.rxandroid)
+        implementation(Libraries.rxjava)
+        implementation(Libraries.rxlint)
+        implementation(Libraries.rxkotlin)
+        implementation(Libraries.threetenabp)
+        implementation(Libraries.timber)
 
         debugImplementation(Libraries.leakcanary)
-        releaseImplementation(Libraries.leakcanarynoop)
-
-        implementation(Libraries.supportappcompat)
-        implementation(Libraries.supportconstraintlayout)
-        implementation(Libraries.supportdesign)
-        implementation(Libraries.supportfragment)
-        implementation(Libraries.supportmultidex)
-        implementation(Libraries.supportrecyclerview)
-        implementation(Libraries.supportvectordrawable)
 
         testImplementation(Libraries.junit)
         testImplementation(Libraries.mockito)
