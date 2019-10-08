@@ -54,9 +54,6 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
         if (Build.VERSION.SDK_INT >= 26) {
             vmBuilder.detectContentUriWithoutPermission()
         }
-        if (Build.VERSION.SDK_INT >= 28) {
-            vmBuilder.detectNonSdkApiUsage()
-        }
         StrictMode.setVmPolicy(vmBuilder.build())
 
         val threadBuilder = StrictMode.ThreadPolicy.Builder()
