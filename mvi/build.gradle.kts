@@ -33,6 +33,7 @@ android {
 
     dependencies {
         implementation(Libraries.lifecycle)
+        implementation(Libraries.kotlinstdlib)
 
         implementation(Libraries.rxjava)
         implementation(Libraries.rxkotlin)
