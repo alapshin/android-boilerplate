@@ -12,7 +12,6 @@ import dagger.android.HasAndroidInjector
 
 import io.fabric.sdk.android.Fabric
 import dagger.android.DispatchingAndroidInjector
-import com.alapshin.boilerplate.di.components.DaggerApplicationComponent
 import com.alapshin.boilerplate.log.CrashlyticsTree
 import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.log.LogcatTree
@@ -52,7 +51,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
         if (BuildConfig.DEBUG) {
             Timber.plant(LogcatTree(LogUtil::class.java.name))
         } else {
-            Timber.plant(CrashlyticsTree());
+            Timber.plant(CrashlyticsTree())
         }
     }
 
@@ -79,8 +78,8 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
                 .penaltyDeath()
                 .detectNetwork()
                 // Disabled due to ResourceCompat#getFont()
-                //.detectDiskReads()
-                //.detectDiskWrites()
+                // .detectDiskReads()
+                // .detectDiskWrites()
                 .detectCustomSlowCalls()
         if (Build.VERSION.SDK_INT >= 23) {
             threadBuilder.detectResourceMismatches()
@@ -118,5 +117,4 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
             LogUtil.e("Undeliverable exception received, not sure what to do", ex)
         }
     }
-
 }

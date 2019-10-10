@@ -6,14 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import okhttp3.Cache
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.TreeSet
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -50,9 +48,11 @@ object NetworkModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideRetrofit(httpClient: OkHttpClient,
-                        converterFactories: Set<@JvmSuppressWildcards Converter.Factory>,
-                        callAdapterFactories: Set<@JvmSuppressWildcards CallAdapter.Factory>): Retrofit {
+    fun provideRetrofit(
+        httpClient: OkHttpClient,
+        converterFactories: Set<@JvmSuppressWildcards Converter.Factory>,
+        callAdapterFactories: Set<@JvmSuppressWildcards CallAdapter.Factory>
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
             .client(httpClient)
