@@ -13,6 +13,10 @@ import dagger.android.HasAndroidInjector
 import io.fabric.sdk.android.Fabric
 import dagger.android.DispatchingAndroidInjector
 import com.alapshin.boilerplate.di.components.DaggerApplicationComponent
+import com.alapshin.boilerplate.log.CrashlyticsTree
+import com.alapshin.boilerplate.log.LogUtil
+import com.alapshin.boilerplate.log.LogcatTree
+import timber.log.Timber
 import javax.inject.Inject
 
 class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
@@ -25,6 +29,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
         super.onCreate()
 
         setupDagger()
+        setupLogging()
 
         Fabric.with(this, Crashlytics())
         if (BuildConfig.DEBUG) {
@@ -36,6 +41,14 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
 
     private fun setupDagger() {
         AppInjector.init(this)
+    }
+
+    private fun setupLogging() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(LogcatTree(LogUtil::class.java.name))
+        } else {
+            Timber.plant(CrashlyticsTree());
+        }
     }
 
     private fun setupStrictMode() {
