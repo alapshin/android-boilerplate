@@ -16,7 +16,11 @@ import com.alapshin.boilerplate.di.components.DaggerApplicationComponent
 import com.alapshin.boilerplate.log.CrashlyticsTree
 import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.log.LogcatTree
+import io.reactivex.exceptions.UndeliverableException
+import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
+import java.io.IOException
+import java.net.SocketException
 import javax.inject.Inject
 
 class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
@@ -30,6 +34,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
 
         setupDagger()
         setupLogging()
+        setupRxJava2ErrorHandler()
 
         Fabric.with(this, Crashlytics())
         if (BuildConfig.DEBUG) {
@@ -85,4 +90,33 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
         }
         StrictMode.setThreadPolicy(threadBuilder.build())
     }
+
+    // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
+    private fun setupRxJava2ErrorHandler() {
+        RxJavaPlugins.setErrorHandler { e ->
+            if (e is IOException || e is SocketException) {
+                // Fine, irrelevant network problem or API that throws on cancellation
+                return@setErrorHandler
+            }
+            if (e is InterruptedException) {
+                // Fine, some blocking code was interrupted by a dispose call
+                return@setErrorHandler
+            }
+            if (e is NullPointerException || e is IllegalArgumentException) {
+                // That's likely a bug in the application
+                Thread.currentThread().uncaughtExceptionHandler!!
+                    .uncaughtException(Thread.currentThread(), e)
+                return@setErrorHandler
+            }
+            if (e is IllegalStateException) {
+                // That's a bug in RxJava or in a custom operator
+                Thread.currentThread().uncaughtExceptionHandler!!
+                    .uncaughtException(Thread.currentThread(), e)
+                return@setErrorHandler
+            }
+            val ex = if (e is UndeliverableException) e.cause else e
+            LogUtil.e("Undeliverable exception received, not sure what to do", ex)
+        }
+    }
+
 }
