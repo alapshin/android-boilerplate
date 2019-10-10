@@ -31,6 +31,7 @@ object Libraries {
     const val rxjava = "io.reactivex.rxjava2:rxjava:2.2.13"
     const val rxkotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+    const val rxrelay = "com.jakewharton.rxrelay2:rxrelay:2.1.1"
     const val rxlint = "nl.littlerobots.rxlint:rxlint:1.7.4"
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.2.1"
     const val timber = "com.jakewharton.timber:timber:4.8.0-20190820.132740-10"

@@ -89,6 +89,8 @@ android {
     }
 
     dependencies {
+        implementation(project(":mvi"))
+
         implementation(Libraries.androidxcorektx)
         implementation(Libraries.androidxconstraintlayout)
         implementation(Libraries.androidxfragmentktx)
@@ -122,6 +124,7 @@ android {
         implementation(Libraries.rxandroid)
         implementation(Libraries.rxjava)
         implementation(Libraries.rxlint)
+        implementation(Libraries.rxrelay)
         implementation(Libraries.rxkotlin)
         implementation(Libraries.threetenabp)
         implementation(Libraries.timber)

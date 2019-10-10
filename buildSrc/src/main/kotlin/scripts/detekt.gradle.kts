@@ -24,5 +24,5 @@ tasks.named("check").configure {
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    autoCorrect = false
+    autoCorrect = true
 }
