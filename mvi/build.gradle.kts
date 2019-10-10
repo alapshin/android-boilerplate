@@ -33,7 +33,6 @@ android {
 
     dependencies {
         implementation(Libraries.lifecycle)
-        implementation(Libraries.lifecyclereactivektx)
 
         implementation(Libraries.rxjava)
         implementation(Libraries.rxkotlin)
