@@ -1,5 +1,6 @@
 package com.alapshin.boilerplate.di.modules
 
+import com.alapshin.boilerplate.ApiService
 import com.alapshin.boilerplate.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -16,22 +17,17 @@ import java.util.TreeSet
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [
+    CacheModule::class
+])
 object NetworkModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideHttpClient(cache: Cache,
-                          interceptors: Map<Int, Interceptor>): OkHttpClient {
+    fun provideHttpClient(cache: Cache): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
             .callTimeout(30, TimeUnit.SECONDS)
-            .apply {
-                val keys = TreeSet(interceptors.keys)
-                for (key in keys) {
-                    addInterceptor(interceptors[key]!!)
-                }
-            }
             .build()
     }
 
@@ -55,8 +51,8 @@ object NetworkModule {
     @Singleton
     @JvmStatic
     fun provideRetrofit(httpClient: OkHttpClient,
-                        converterFactories: Set<Converter.Factory>,
-                        callAdapterFactories: Set<CallAdapter.Factory>): Retrofit {
+                        converterFactories: Set<@JvmSuppressWildcards Converter.Factory>,
+                        callAdapterFactories: Set<@JvmSuppressWildcards CallAdapter.Factory>): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
             .client(httpClient)
@@ -70,5 +66,12 @@ object NetworkModule {
                 }
             }
             .build()
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideRetrofitService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }

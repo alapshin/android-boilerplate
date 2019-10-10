@@ -1,5 +1,6 @@
 package com.alapshin.boilerplate.di.modules
 
+import android.app.Application
 import android.content.Context
 
 import dagger.Module

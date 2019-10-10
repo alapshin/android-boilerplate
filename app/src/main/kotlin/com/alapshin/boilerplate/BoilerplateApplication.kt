@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.StrictMode
 import androidx.multidex.MultiDexApplication
+import com.alapshin.boilerplate.di.AppInjector
 
 import com.crashlytics.android.Crashlytics
 import dagger.android.AndroidInjector
@@ -11,15 +12,14 @@ import dagger.android.HasAndroidInjector
 
 import io.fabric.sdk.android.Fabric
 import dagger.android.DispatchingAndroidInjector
-import com.alapshin.boilerplate.di.components.ApplicationComponent
 import com.alapshin.boilerplate.di.components.DaggerApplicationComponent
 import javax.inject.Inject
 
 class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate() {
         super.onCreate()
@@ -35,7 +35,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
     }
 
     private fun setupDagger() {
-        DaggerApplicationComponent.create().inject(this)
+        AppInjector.init(this)
     }
 
     private fun setupStrictMode() {
