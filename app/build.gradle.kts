@@ -7,11 +7,11 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("androidx.navigation.safeargs.kotlin")
 
+    id("deps-updates")
+    id("detekt-configuration")
+
     id("io.fabric")
     id("com.github.triplet.play")
-
-    id("deps-updates")
-    id("detekt-config")
 }
 
 play {

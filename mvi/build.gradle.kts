@@ -3,7 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
 
-    id("detekt-config")
+    id("deps-updates")
+    id("detekt-configuration")
 }
 
 android {
