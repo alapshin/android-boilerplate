@@ -23,7 +23,7 @@ object Libraries {
     const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
     const val moshicodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val navigationuiktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val navigationfragmentktx = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigationfragmentktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitmoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
