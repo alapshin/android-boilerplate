@@ -1,21 +1,20 @@
 package com.alapshin.boilerplate.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.os.PersistableBundle
 import com.alapshin.boilerplate.R
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import com.alapshin.boilerplate.base.BaseMviActivity
+import com.alapshin.boilerplate.log.LogUtil
+import com.alapshin.mvi.MviState
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+class MainActivity : BaseMviActivity<MviState>() {
+    override val layoutRes = R.layout.main_activity
 
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        LogUtil.d("AAAA")
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+    override fun render(state: MviState) {
     }
 }
