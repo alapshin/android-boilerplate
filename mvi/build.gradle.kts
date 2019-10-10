@@ -38,5 +38,7 @@ android {
         implementation(Libraries.rxkotlin)
         implementation(Libraries.rxandroid)
         implementation(Libraries.rxrelay)
+
+        detektPlugins(Libraries.detektformatting)
     }
 }

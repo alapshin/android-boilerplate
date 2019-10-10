@@ -22,5 +22,5 @@ dependencies {
 
     // Code-quality plugins
     implementation("com.github.ben-manes:gradle-versions-plugin:0.21.0")
-    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.1")
+    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.1.0")
 }

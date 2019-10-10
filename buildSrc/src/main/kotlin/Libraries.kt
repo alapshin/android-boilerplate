@@ -12,6 +12,7 @@ object Libraries {
     const val daggerandroid = "com.google.dagger:dagger-android:${Versions.dagger}"
     const val daggerandroidprocessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerandroidsupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    const val detektformatting = "io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.detekt}"
     const val firebasecore = "com.google.firebase:firebase-core:17.2.0"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glidecompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"

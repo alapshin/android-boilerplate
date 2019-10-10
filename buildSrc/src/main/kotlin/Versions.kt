@@ -6,6 +6,7 @@ object Versions {
     const val androidxTest = "1.2.0"
 
     const val dagger = "2.24"
+    const val detekt = "1.1.0"
     const val espresso = "3.2.0"
     const val glide = "4.10.0"
     const val kotlin = "1.3.50"

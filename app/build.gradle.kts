@@ -106,6 +106,7 @@ android {
         implementation(Libraries.daggerandroidsupport)
         kapt(Libraries.daggercompiler)
         kapt(Libraries.daggerandroidprocessor)
+        detektPlugins(Libraries.detektformatting)
         implementation(Libraries.firebasecore)
         implementation(Libraries.glide)
         kapt(Libraries.glidecompiler)
