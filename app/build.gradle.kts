@@ -30,11 +30,15 @@ android {
     compileSdkVersion(Versions.compileSdk)
 
     compileOptions {
-        setSourceCompatibility(JavaVersion.VERSION_1_8)
-        setTargetCompatibility(JavaVersion.VERSION_1_8)
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     sourceSets["main"].java.srcDir("src/main/kotlin")
+
+    viewBinding {
+        isEnabled = true
+    }
 
     defaultConfig {
         applicationId = "com.alapshin.boilerplate"
