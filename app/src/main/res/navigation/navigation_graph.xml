@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/postList">
+
+    <fragment
+        android:id="@+id/postList"
+        android:name="com.alapshin.boilerplate.posts.view.PostListFragment"
+        android:label="PostList">
+        <action
+            android:id="@+id/action_postList_to_postDetail"
+            app:destination="@id/postDetail"/>
+    </fragment>
+    <fragment
+        android:id="@+id/postDetail"
+        android:name="com.alapshin.boilerplate.posts.view.PostDetailFragment"
+        android:label="PostDetailFragment"/>
+
+</navigation>
