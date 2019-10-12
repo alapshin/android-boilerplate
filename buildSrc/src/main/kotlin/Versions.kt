@@ -3,8 +3,6 @@ object Versions {
     const val compileSdk = 29
     const val targetSdk = 29
 
-    const val androidxTest = "1.2.0"
-
     const val dagger = "2.24"
     const val detekt = "1.1.0"
     const val espresso = "3.2.0"
@@ -18,4 +16,6 @@ object Versions {
     const val okhttp = "4.2.2"
     const val retrofit = "2.6.2"
     const val robolectric = "4.0"
+
+    const val androidxTest = "1.2.0"
 }

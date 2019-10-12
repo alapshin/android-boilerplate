@@ -10,12 +10,16 @@
         android:name="com.alapshin.boilerplate.posts.view.PostListFragment"
         android:label="PostList">
         <action
-            android:id="@+id/action_postList_to_postDetail"
+            android:id="@+id/actionDetail"
             app:destination="@id/postDetail"/>
     </fragment>
     <fragment
         android:id="@+id/postDetail"
         android:name="com.alapshin.boilerplate.posts.view.PostDetailFragment"
-        android:label="PostDetailFragment"/>
+        android:label="PostDetailFragment">
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

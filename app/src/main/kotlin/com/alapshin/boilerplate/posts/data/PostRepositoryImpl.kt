@@ -8,4 +8,8 @@ class PostRepositoryImpl @Inject constructor(private val apiService: ApiService)
     override fun getPosts(): Observable<List<Post>> {
         return apiService.getPosts().toObservable()
     }
+
+    override fun getPost(id: Int): Observable<Post> {
+        return apiService.getPost(id).toObservable()
+    }
 }
