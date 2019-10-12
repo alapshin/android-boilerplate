@@ -17,8 +17,8 @@ class PostListViewModel @Inject constructor(repository: PostRepository) :
     RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>(createProcessor(repository), reducer) {
 
     sealed class Event : MviEvent {
-        class Idle() : Event()
-        class Redirect() : Event()
+        class Idle : Event()
+        class Redirect : Event()
     }
 
     data class State(

@@ -26,7 +26,8 @@ object NetworkModule {
     @JvmStatic
     fun provideHttpClient(
         cache: Cache,
-        interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient {
+        interceptors: Set<@JvmSuppressWildcards Interceptor>
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
             .callTimeout(30, TimeUnit.SECONDS).apply {

@@ -25,17 +25,17 @@ class PostDetailFragment : BaseMviFragment<PostsDetailFragmentBinding, PostDetai
         postViewModel.dispatch(PostDetailViewModel.Event.Get(args.postId))
         postViewModel.state.observe(viewLifecycleOwner, Observer {
             render(it)
-        } )
+        })
     }
 
     override fun render(state: PostDetailViewModel.State) {
         LogUtil.d(state.toString())
         if (state.post != null) {
             binding.postsDetailBody.text = state.post.body
-            binding.postsDetailTitle.text =  state.post.title
+            binding.postsDetailTitle.text = state.post.title
             Glide.with(this)
                 .load(String.format(BuildConfig.IMAGE_URL, state.post.id))
-                .into(binding.postsDetailImage);
+                .into(binding.postsDetailImage)
         }
     }
 }

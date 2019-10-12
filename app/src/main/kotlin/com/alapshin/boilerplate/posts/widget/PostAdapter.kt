@@ -3,14 +3,12 @@ package com.alapshin.boilerplate.posts.widget
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.alapshin.boilerplate.common.recyclerview.BaseAdapter
-import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
 
 class PostAdapter : BaseAdapter<Post, PostAdapter.ViewHolder>(DIFF_CALLBACK) {
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(PostItemView(parent.context))

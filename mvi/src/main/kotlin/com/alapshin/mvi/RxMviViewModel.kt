@@ -12,7 +12,9 @@ typealias Reducer<S> = (state1: S, state2: S) -> S
 typealias Processor<E, S> = (events: Observable<E>) -> Observable<S>
 
 abstract class RxMviViewModel<E : MviEvent, S : MviState>(
-    processor: Processor<E, S>, reducer: Reducer<S>) : MviViewModel<E, S>() {
+    processor: Processor<E, S>,
+    reducer: Reducer<S>
+) : MviViewModel<E, S>() {
 
     override val state: MutableLiveData<S> = MutableLiveData<S>()
 
@@ -39,12 +41,11 @@ abstract class RxMviViewModel<E : MviEvent, S : MviState>(
         disposables.clear()
     }
 
-
     override fun dispatch(event: E) {
         eventRelay.accept(event)
     }
 
     protected fun addDisposable(disposable: Disposable) {
-       disposables += disposable
+        disposables += disposable
     }
 }

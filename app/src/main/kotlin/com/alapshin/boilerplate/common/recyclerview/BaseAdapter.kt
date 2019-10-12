@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(itemCallback: DiffUtil.ItemCallback<T>) :
+abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(itemCallback: DiffUtil.ItemCallback<T>) :
     ListAdapter<T, VH>(itemCallback) {
 
     interface OnItemClickListener<T> {

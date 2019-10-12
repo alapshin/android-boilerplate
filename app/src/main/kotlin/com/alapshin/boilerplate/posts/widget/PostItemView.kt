@@ -25,7 +25,6 @@ class PostItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
         binding.postsListItemTitle.text = item.title
         Glide.with(this)
             .load(String.format(BuildConfig.IMAGE_URL, item.id))
-            .into(binding.postsListItemImage);
-
+            .into(binding.postsListItemImage)
     }
 }

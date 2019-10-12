@@ -7,7 +7,7 @@ import com.alapshin.mvi.MviState
 import com.alapshin.mvi.MviView
 import javax.inject.Inject
 
-abstract class BaseMviFragment<T: ViewBinding, S : MviState> : BaseFragment<T>(), MviView<S>, Injectable  {
+abstract class BaseMviFragment<T : ViewBinding, S : MviState> : BaseFragment<T>(), MviView<S>, Injectable {
     @Inject
     protected lateinit var vmFactory: ViewModelProvider.Factory
 }

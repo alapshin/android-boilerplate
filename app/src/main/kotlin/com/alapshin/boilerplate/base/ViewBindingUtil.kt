@@ -9,16 +9,16 @@ import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-fun <V : ViewBinding> Fragment.viewBinding(initializer: () -> V)
-    : ReadOnlyProperty<Fragment, V> = LifecycleAwareLazy(initializer)
-fun <V : ViewBinding> AppCompatActivity.viewBinding(initializer: () -> V)
-    : ReadOnlyProperty<Any, V> = LifecycleAwareLazy(initializer)
+fun <V : ViewBinding> Fragment.viewBinding(initializer: () -> V):
+    ReadOnlyProperty<Fragment, V> = LifecycleAwareLazy(initializer)
+fun <V : ViewBinding> AppCompatActivity.viewBinding(initializer: () -> V):
+    ReadOnlyProperty<Any, V> = LifecycleAwareLazy(initializer)
 
 /**
  * Lifecycle aware implementation of [Lazy]
  */
-private class LifecycleAwareLazy<T, V>(private val initializer: () -> V)
-    : ReadOnlyProperty<T, V>, LifecycleObserver {
+private class LifecycleAwareLazy<T, V>(private val initializer: () -> V) :
+    ReadOnlyProperty<T, V>, LifecycleObserver {
     private var value: V? = null
     private var attachedToLifecycleOwner = false
 

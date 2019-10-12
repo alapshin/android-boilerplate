@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.alapshin.boilerplate.R
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.common.recyclerview.BaseAdapter
