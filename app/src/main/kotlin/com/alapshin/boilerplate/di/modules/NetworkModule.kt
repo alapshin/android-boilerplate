@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Converter
@@ -16,16 +17,23 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module(includes = [
-    CacheModule::class
+    CacheModule::class,
+    InterceptorModule::class
 ])
 object NetworkModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideHttpClient(cache: Cache): OkHttpClient {
+    fun provideHttpClient(
+        cache: Cache,
+        interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
-            .callTimeout(30, TimeUnit.SECONDS)
+            .callTimeout(30, TimeUnit.SECONDS).apply {
+                for (interceptor in interceptors) {
+                    addInterceptor(interceptor)
+                }
+            }
             .build()
     }
 

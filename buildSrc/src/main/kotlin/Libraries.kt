@@ -27,6 +27,7 @@ object Libraries {
     const val navigationuiktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationfragmentktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val okhttplogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitmoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val retrofitrxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"

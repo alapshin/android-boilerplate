@@ -39,6 +39,8 @@ android {
     }
 
     sourceSets["main"].java.srcDir("src/main/kotlin")
+    sourceSets["debug"].java.srcDir("src/debug/kotlin")
+    sourceSets["release"].java.srcDir("src/release/kotlin")
 
     viewBinding {
         isEnabled = true
@@ -131,6 +133,7 @@ android {
         implementation(Libraries.navigationuiktx)
         implementation(Libraries.navigationfragmentktx)
         implementation(Libraries.okhttp)
+        debugImplementation(Libraries.okhttplogging)
         implementation(Libraries.retrofit)
         implementation(Libraries.retrofitmoshi)
         implementation(Libraries.retrofitrxjava2)
