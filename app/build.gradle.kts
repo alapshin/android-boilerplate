@@ -120,6 +120,7 @@ android {
         implementation(Libraries.glideokhttp)
         implementation(Libraries.kotlinstdlib)
         implementation(Libraries.lifecycle)
+        implementation(Libraries.lifecyclecommon)
         implementation(Libraries.lifecyclereactivektx)
         implementation(Libraries.moshi)
         kapt(Libraries.moshicodegen)

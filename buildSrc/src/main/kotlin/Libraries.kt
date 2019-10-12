@@ -19,6 +19,7 @@ object Libraries {
     const val glideokhttp = "com.github.bumptech.glide:okhttp3-integration:${Versions.glide}"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecyclecommon = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val lifecyclereactivektx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.lifecycle}"
     const val kotlinstdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
