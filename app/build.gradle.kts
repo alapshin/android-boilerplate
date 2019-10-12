@@ -55,7 +55,7 @@ android {
         resValue("string", "fabric_api_key", "e9c70adcc0565fff7b6bdc0086c7f5ac15a4b7e8")
 
         buildConfigField("String", "API_URL", "\"https://jsonplaceholder.typicode.com/\"")
-        buildConfigField("String", "IMAGES_BASE_URL", "\"https://picsum.photos/\"")
+        buildConfigField("String", "IMAGE_URL", "\"https://picsum.photos/id/%s/640/480/\"")
     }
 
     signingConfigs {
