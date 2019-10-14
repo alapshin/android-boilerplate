@@ -22,15 +22,15 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
 
     val adapter = PostAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        if (!isRestored()) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
             postViewModel.dispatch(PostListViewModel.Event.Idle())
         }
-        postViewModel.state.observe(viewLifecycleOwner, Observer<PostListViewModel.State> {
-            render(it)
-        })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.postsListRecyclerview.adapter = adapter
         adapter.onItemClickListener = object : BaseAdapter.OnItemClickListener<Post> {
@@ -40,6 +40,10 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
                 )
             }
         }
+
+        postViewModel.state.observe(viewLifecycleOwner, Observer<PostListViewModel.State> {
+            render(it)
+        })
     }
 
     override fun render(state: PostListViewModel.State) {
