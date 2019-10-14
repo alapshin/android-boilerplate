@@ -19,15 +19,20 @@
             android:id="@+id/posts_list_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/card_content_padding"
             android:layout_marginStart="@dimen/card_content_padding"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             />
         <TextView
             android:id="@+id/posts_list_item_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/card_content_padding"
             android:layout_marginStart="@dimen/card_content_padding"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
