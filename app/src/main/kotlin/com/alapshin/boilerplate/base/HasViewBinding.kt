@@ -2,6 +2,6 @@ package com.alapshin.boilerplate.base
 
 import androidx.viewbinding.ViewBinding
 
-interface HasViewBinding<T : ViewBinding> {
-    val binding: T
+interface HasViewBinding<VB : ViewBinding> {
+    val binding: VB
 }

@@ -7,16 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<T : ViewBinding> : Fragment(), HasViewBinding<T> {
-    private var inBackStack = false
-    fun isRestored() = inBackStack
-
+abstract class BaseFragment<VB : ViewBinding> : Fragment(), HasViewBinding<VB> {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        inBackStack = true
-        super.onDestroyView()
     }
 }
