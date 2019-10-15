@@ -11,10 +11,7 @@ import io.reactivex.rxkotlin.plusAssign
 typealias Reducer<S> = (state1: S, state2: S) -> S
 typealias Processor<E, S> = (events: Observable<E>) -> Observable<S>
 
-abstract class RxMviViewModel<E : MviEvent, S : MviState>(
-    processor: Processor<E, S>,
-    reducer: Reducer<S>
-) : MviViewModel<E, S>() {
+abstract class RxMviViewModel<E : MviEvent, S : MviState> : MviViewModel<E, S>() {
 
     override val state: MutableLiveData<S> = MutableLiveData<S>()
 
@@ -22,11 +19,11 @@ abstract class RxMviViewModel<E : MviEvent, S : MviState>(
     protected val eventRelay: BehaviorRelay<E> = BehaviorRelay.create()
     protected val stateRelay: BehaviorRelay<S> = BehaviorRelay.create()
 
-    init {
+    fun start() {
         addDisposable(
             eventRelay
-                .publish(processor)
-                .scan(reducer)
+                .publish(processor())
+                .scan(reducer())
                 .subscribe(stateRelay)
         )
 
@@ -44,6 +41,9 @@ abstract class RxMviViewModel<E : MviEvent, S : MviState>(
     override fun dispatch(event: E) {
         eventRelay.accept(event)
     }
+
+    abstract fun reducer(): Reducer<S>
+    abstract fun processor(): Processor<E, S>
 
     protected fun addDisposable(disposable: Disposable) {
         disposables += disposable
