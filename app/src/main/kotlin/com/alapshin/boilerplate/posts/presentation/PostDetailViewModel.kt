@@ -11,8 +11,8 @@ import io.reactivex.ObservableTransformer
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class PostDetailViewModel @Inject constructor(repository: PostRepository) :
-    RxMviViewModel<PostDetailViewModel.Event, PostDetailViewModel.State>(createProcessor(repository), reducer) {
+class PostDetailViewModel @Inject constructor(private val repository: PostRepository) :
+    RxMviViewModel<PostDetailViewModel.Event, PostDetailViewModel.State>() {
 
     sealed class Event : MviEvent {
         data class Get(val id: Int) : Event()
@@ -24,21 +24,22 @@ class PostDetailViewModel @Inject constructor(repository: PostRepository) :
         val progress: Boolean = false
     ) : MviState
 
-    companion object {
-        val reducer: Reducer<State> = { state1, state2 -> state2 }
+    override fun reducer(): Reducer<State> {
+        return { state1, state2 -> state2 }
+    }
 
-        fun createProcessor(repository: PostRepository): Processor<Event, State> {
-            val getTransformer = ObservableTransformer<Event.Get, State> {
-                it.switchMap { event ->
-                    repository.getPost(event.id)
-                        .subscribeOn(Schedulers.io())
-                        .map { State(post = it) }
-                        .startWith(State(progress = true))
-                        .onErrorReturn { State(error = it) }
-                }
+    override fun processor(): Processor<Event, State> {
+        val getTransformer = ObservableTransformer<Event.Get, State> {
+            it.switchMap { event ->
+                repository.getPost(event.id)
+                    .toObservable()
+                    .subscribeOn(Schedulers.io())
+                    .map { State(post = it) }
+                    .startWith(State(progress = true))
+                    .onErrorReturn { State(error = it) }
             }
-
-            return { events -> events.ofType(Event.Get::class.java).compose(getTransformer) }
         }
+
+        return { events -> events.ofType(Event.Get::class.java).compose(getTransformer) }
     }
 }

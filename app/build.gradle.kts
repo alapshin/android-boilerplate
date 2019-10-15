@@ -134,6 +134,8 @@ android {
         implementation(Libraries.navigationfragmentktx)
         implementation(Libraries.okhttp)
         debugImplementation(Libraries.okhttplogging)
+        implementation(Libraries.paging)
+        implementation(Libraries.pagingrxjava)
         implementation(Libraries.retrofit)
         implementation(Libraries.retrofitmoshi)
         implementation(Libraries.retrofitrxjava2)

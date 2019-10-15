@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
-import com.alapshin.boilerplate.common.recyclerview.BaseAdapter
+import com.alapshin.boilerplate.common.recyclerview.OnItemClickListener
 import com.alapshin.boilerplate.databinding.PostsListFragmentBinding
 import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
@@ -33,11 +33,13 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
         super.onViewCreated(view, savedInstanceState)
 
         binding.postsListRecyclerview.adapter = adapter
-        adapter.onItemClickListener = object : BaseAdapter.OnItemClickListener<Post> {
-            override fun onItemClick(item: Post, position: Int) {
-                findNavController().navigate(
-                    PostListFragmentDirections.actionDetail(item.id)
-                )
+        adapter.onItemClickListener = object : OnItemClickListener<Post> {
+            override fun onItemClick(item: Post?, position: Int) {
+                item?.let {
+                    findNavController().navigate(
+                        PostListFragmentDirections.actionDetail(item.id)
+                    )
+                }
             }
         }
 
@@ -47,14 +49,13 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
     }
 
     override fun render(state: PostListViewModel.State) {
-        LogUtil.d(state.toString())
-        if (state.progress) {
-            binding.postsListProgressBar.show()
-        } else {
-            binding.postsListProgressBar.hide()
-        }
-        if (state.posts?.isNotEmpty() == true) {
+        if (state.posts != null) {
             adapter.submitList(state.posts)
+        }
+        if (!state.progress) {
+            binding.postsListProgressBar.hide()
+        } else if (state.posts?.isEmpty() == true) {
+            binding.postsListProgressBar.show()
         }
     }
 }

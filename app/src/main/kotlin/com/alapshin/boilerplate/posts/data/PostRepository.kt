@@ -1,8 +1,8 @@
 package com.alapshin.boilerplate.posts.data
 
-import io.reactivex.Observable
+import io.reactivex.Single
 
 interface PostRepository {
-    fun getPosts(): Observable<List<Post>>
-    fun getPost(id: Int): Observable<Post>
+    fun getPost(id: Int): Single<Post>
+    fun getPosts(page: Int): Single<List<Post>>
 }

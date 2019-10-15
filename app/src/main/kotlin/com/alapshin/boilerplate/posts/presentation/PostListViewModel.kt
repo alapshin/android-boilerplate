@@ -1,7 +1,12 @@
 package com.alapshin.boilerplate.posts.presentation
 
+import androidx.paging.PagedList
+import com.alapshin.boilerplate.common.paging.ListingFactory
+import com.alapshin.boilerplate.common.paging.NetworkState
+import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
-import com.alapshin.boilerplate.posts.data.PostRepository
+import com.alapshin.boilerplate.posts.data.PostDataSource
+import com.alapshin.boilerplate.posts.data.PostDataSourceFactory
 import com.alapshin.mvi.MviEvent
 import com.alapshin.mvi.MviState
 import com.alapshin.mvi.Processor
@@ -9,53 +14,49 @@ import com.alapshin.mvi.Reducer
 import com.alapshin.mvi.RxMviViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class PostListViewModel @Inject constructor(repository: PostRepository) :
-    RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>(createProcessor(repository), reducer) {
+class PostListViewModel @Inject constructor(private val dataSourceFactory: PostDataSourceFactory) :
+    RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>() {
 
     sealed class Event : MviEvent {
         class Idle : Event()
-        class Redirect : Event()
     }
 
     data class State(
         val error: Throwable? = null,
         val progress: Boolean = false,
-        val posts: List<Post>? = null
+        val posts: PagedList<Post>? = null
     ) : MviState
 
-    companion object {
-        val reducer: Reducer<State> = { state1, state2 ->
-            if (state1.posts == null) {
-                state2
-            } else {
-                state2.copy(posts = state1.posts)
+    init {
+        start()
+    }
+
+    override fun reducer(): Reducer<State> {
+        return { state1, state2 -> state2 }
+    }
+
+    override fun processor(): Processor<Event, State> {
+        val listing = ListingFactory.createListing(
+            PostDataSource.CONFIG,
+            Schedulers.io(),
+            AndroidSchedulers.mainThread(),
+            dataSourceFactory
+        )
+        val idleTransformer = ObservableTransformer<Event.Idle, State> {
+            it.switchMap { event ->
+                Observable.combineLatest(listing.list, listing.networkState,
+                    BiFunction<PagedList<Post>, NetworkState, State>
+                    { list, networkState ->
+                        State(progress = networkState is NetworkState.Loading, posts = list)
+                    })
             }
         }
 
-        fun createProcessor(repository: PostRepository): Processor<Event, State> {
-            val idleTransformer = ObservableTransformer<Event.Idle, State> {
-                it.switchMap { event ->
-                    repository.getPosts()
-                        .delay(5, TimeUnit.SECONDS)
-                        .subscribeOn(Schedulers.io())
-                        .map { State(posts = it) }
-                        .startWith(State(progress = true))
-                        .onErrorReturn { State(error = it) }
-                }
-            }
-
-            val redirectTransformer = ObservableTransformer<Event.Redirect, State> {
-                it.switchMap { event -> Observable.just(State()) }
-            }
-
-            return { events -> Observable.merge(
-                events.ofType(Event.Idle::class.java).compose(idleTransformer),
-                events.ofType(Event.Redirect::class.java).compose(redirectTransformer)
-            ) }
-        }
+        return { events -> events.ofType(Event.Idle::class.java).compose(idleTransformer) }
     }
 }

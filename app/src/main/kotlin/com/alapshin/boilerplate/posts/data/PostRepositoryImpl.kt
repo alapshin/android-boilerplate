@@ -1,15 +1,15 @@
 package com.alapshin.boilerplate.posts.data
 
 import com.alapshin.boilerplate.ApiService
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(private val apiService: ApiService) : PostRepository {
-    override fun getPosts(): Observable<List<Post>> {
-        return apiService.getPosts().toObservable()
+    override fun getPost(id: Int): Single<Post> {
+        return apiService.getPost(id)
     }
 
-    override fun getPost(id: Int): Observable<Post> {
-        return apiService.getPost(id).toObservable()
+    override fun getPosts(page: Int): Single<List<Post>> {
+        return apiService.getPosts(page)
     }
 }
