@@ -144,6 +144,7 @@ android {
         implementation(Libraries.rxlint)
         implementation(Libraries.rxrelay)
         implementation(Libraries.rxkotlin)
+        implementation(Libraries.swipetorefreshlayout)
         implementation(Libraries.threetenabp)
         implementation(Libraries.timber)
 

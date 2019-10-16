@@ -3,7 +3,6 @@ package com.alapshin.boilerplate.posts.presentation
 import androidx.paging.PagedList
 import com.alapshin.boilerplate.common.paging.ListingFactory
 import com.alapshin.boilerplate.common.paging.NetworkState
-import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.data.PostDataSource
 import com.alapshin.boilerplate.posts.data.PostDataSourceFactory
@@ -24,6 +23,7 @@ class PostListViewModel @Inject constructor(private val dataSourceFactory: PostD
 
     sealed class Event : MviEvent {
         class Idle : Event()
+        class Refresh : Event()
     }
 
     data class State(
@@ -34,6 +34,14 @@ class PostListViewModel @Inject constructor(private val dataSourceFactory: PostD
 
     init {
         start()
+    }
+
+    override fun dispatch(event: Event) {
+        if (event is Event.Idle) {
+            super.dispatch(event)
+        } else {
+            dataSourceFactory.invalidate()
+        }
     }
 
     override fun reducer(): Reducer<State> {

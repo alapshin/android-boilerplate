@@ -9,7 +9,6 @@ import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.common.recyclerview.OnItemClickListener
 import com.alapshin.boilerplate.databinding.PostsListFragmentBinding
-import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.presentation.PostListViewModel
 import com.alapshin.boilerplate.posts.widget.PostAdapter
@@ -20,7 +19,7 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
     }
     private val postViewModel: PostListViewModel by viewModels { vmFactory }
 
-    val adapter = PostAdapter()
+    private val adapter = PostAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +41,9 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
                 }
             }
         }
+        binding.postsListSwipeLayout.setOnRefreshListener {
+            postViewModel.dispatch(PostListViewModel.Event.Refresh())
+        }
 
         postViewModel.state.observe(viewLifecycleOwner, Observer<PostListViewModel.State> {
             render(it)
@@ -54,6 +56,7 @@ class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewM
         }
         if (!state.progress) {
             binding.postsListProgressBar.hide()
+            binding.postsListSwipeLayout.isRefreshing = false
         } else if (state.posts?.isEmpty() == true) {
             binding.postsListProgressBar.show()
         }
