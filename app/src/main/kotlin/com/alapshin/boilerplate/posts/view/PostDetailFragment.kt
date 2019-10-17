@@ -9,7 +9,6 @@ import com.alapshin.boilerplate.BuildConfig
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.databinding.PostsDetailFragmentBinding
-import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.presentation.PostDetailViewModel
 import com.bumptech.glide.Glide
 
@@ -20,16 +19,22 @@ class PostDetailFragment : BaseMviFragment<PostsDetailFragmentBinding, PostDetai
     }
     val postViewModel: PostDetailViewModel by viewModels { vmFactory }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            postViewModel.dispatch(PostDetailViewModel.Event.Get(args.postId))
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        postViewModel.dispatch(PostDetailViewModel.Event.Get(args.postId))
+
         postViewModel.state.observe(viewLifecycleOwner, Observer {
             render(it)
         })
     }
 
     override fun render(state: PostDetailViewModel.State) {
-        LogUtil.d(state.toString())
         if (state.post != null) {
             binding.postsDetailBody.text = state.post.body
             binding.postsDetailTitle.text = state.post.title

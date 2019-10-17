@@ -24,6 +24,10 @@ class PostDetailViewModel @Inject constructor(private val repository: PostReposi
         val progress: Boolean = false
     ) : MviState
 
+    init {
+        start()
+    }
+
     override fun reducer(): Reducer<State> {
         return { state1, state2 -> state2 }
     }
