@@ -49,6 +49,7 @@ class PostListViewModel @Inject constructor(private val dataSourceFactory: PostD
     }
 
     override fun processor(): Processor<Event, State> {
+        dataSourceFactory.disposables = disposables
         val listing = ListingFactory.createListing(
             PostDataSource.CONFIG,
             Schedulers.io(),

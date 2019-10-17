@@ -3,8 +3,10 @@ package com.alapshin.boilerplate.common.paging
 import androidx.paging.PageKeyedDataSource
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
 
-abstract class RxPageKeyedDataSource<Key, Value> : PageKeyedDataSource<Key, Value>(), HasNetworkState {
+abstract class RxPageKeyedDataSource<Key, Value>(private val disposables: CompositeDisposable) :
+    PageKeyedDataSource<Key, Value>(), RxDataSource {
     override val networkState = BehaviorRelay.create<NetworkState>()
 
     data class Load<Key, Value>(
@@ -26,13 +28,13 @@ abstract class RxPageKeyedDataSource<Key, Value> : PageKeyedDataSource<Key, Valu
     override fun loadAfter(params: LoadParams<Key>, callback: LoadCallback<Key, Value>) {
         val load = createLoad(params)
         networkState.accept(NetworkState.Loading())
-        load.data.subscribe(
+        disposables.add(load.data.subscribe(
             { data ->
                 networkState.accept(NetworkState.Success())
                 callback.onResult(data, load.adjacentPageKey)
             },
             { error -> networkState.accept(NetworkState.Error(error)) }
-        )
+        ))
     }
 
     override fun loadBefore(params: LoadParams<Key>, callback: LoadCallback<Key, Value>) {
@@ -41,12 +43,12 @@ abstract class RxPageKeyedDataSource<Key, Value> : PageKeyedDataSource<Key, Valu
     override fun loadInitial(params: LoadInitialParams<Key>, callback: LoadInitialCallback<Key, Value>) {
         val load = createInitialLoad(params)
         networkState.accept(NetworkState.Loading())
-        load.data.subscribe(
+        disposables.add(load.data.subscribe(
             { data ->
                 networkState.accept(NetworkState.Success())
                 callback.onResult(data, load.previousPageKey, load.nextPageKey)
             },
             { error -> networkState.accept(NetworkState.Error(error)) }
-        )
+        ))
     }
 }

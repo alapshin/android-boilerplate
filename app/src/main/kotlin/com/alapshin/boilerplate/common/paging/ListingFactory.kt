@@ -12,12 +12,12 @@ object ListingFactory {
         dataSourceFactory: RxDataSourceFactory<Key, Value>
     ): Listing<Value> {
 
+        val state = dataSourceFactory.networkState()
         val pagedList = RxPagedListBuilder(dataSourceFactory, config)
             .setFetchScheduler(fetchScheduler)
             .setNotifyScheduler(notifyScheduler)
             .buildObservable()
-        val networkState = dataSourceFactory.networkState
 
-        return Listing(pagedList, networkState)
+        return Listing(pagedList, state)
     }
 }

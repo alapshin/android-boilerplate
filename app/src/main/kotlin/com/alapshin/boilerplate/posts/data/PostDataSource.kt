@@ -2,8 +2,10 @@ package com.alapshin.boilerplate.posts.data
 
 import androidx.paging.PagedList
 import com.alapshin.boilerplate.common.paging.RxPageKeyedDataSource
+import io.reactivex.disposables.CompositeDisposable
 
-class PostDataSource constructor(private val repository: PostRepository) : RxPageKeyedDataSource<Int, Post>() {
+class PostDataSource constructor(disposables: CompositeDisposable, private val repository: PostRepository) :
+    RxPageKeyedDataSource<Int, Post>(disposables) {
     companion object {
         val CONFIG = PagedList.Config.Builder()
             .setPageSize(10)
