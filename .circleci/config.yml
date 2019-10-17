@@ -3,7 +3,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alapshin/android-build-env
+      - image: circleci/android:api-29
+
     steps:
       - checkout
       - restore_cache:
@@ -20,6 +21,5 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-            - ~/.gradle/wrapper/
             - ~/.android/build-cache
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
