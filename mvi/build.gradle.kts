@@ -45,5 +45,11 @@ android {
         implementation(Libraries.rxrelay)
 
         detektPlugins(Libraries.detektformatting)
+
+        testImplementation(Libraries.junit)
+        
+        androidTestImplementation(Libraries.androidxtestcore)
+        androidTestImplementation(Libraries.androidxtestjunit)
+        androidTestImplementation(Libraries.androidxtestrunner)
     }
 }
