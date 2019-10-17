@@ -20,6 +20,15 @@ play {
     serviceAccountCredentials = rootProject.file("google-play-publisher.json")
 }
 
+kapt {
+    javacOptions {
+        // Workaround for https://github.com/google/dagger/issues/1449
+        option("-source", "8")
+        option("-target", "8")
+        option("-Adagger.fastInit=enabled")
+    }
+}
+
 kotlin {
     sourceSets.configureEach {
         languageSettings.progressiveMode = true
