@@ -8,14 +8,14 @@ import androidx.navigation.fragment.findNavController
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.common.recyclerview.OnItemClickListener
-import com.alapshin.boilerplate.databinding.PostsListFragmentBinding
+import com.alapshin.boilerplate.databinding.PostListFragmentBinding
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.presentation.PostListViewModel
 import com.alapshin.boilerplate.posts.widget.PostAdapter
 
-class PostListFragment : BaseMviFragment<PostsListFragmentBinding, PostListViewModel.State>() {
+class PostListFragment : BaseMviFragment<PostListFragmentBinding, PostListViewModel.State>() {
     override val binding by viewBinding {
-        PostsListFragmentBinding.inflate(layoutInflater)
+        PostListFragmentBinding.inflate(layoutInflater)
     }
     private val postViewModel: PostListViewModel by viewModels { vmFactory }
 

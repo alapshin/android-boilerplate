@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.alapshin.boilerplate.BuildConfig
 import com.alapshin.boilerplate.base.HasViewBinding
-import com.alapshin.boilerplate.databinding.PostsListItemViewBinding
+import com.alapshin.boilerplate.databinding.PostListItemViewBinding
 import com.alapshin.boilerplate.posts.data.Post
 import com.bumptech.glide.Glide
 
 class PostItemView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr), HasViewBinding<PostsListItemViewBinding> {
+    FrameLayout(context, attrs, defStyleAttr), HasViewBinding<PostListItemViewBinding> {
 
-    override val binding = PostsListItemViewBinding.inflate(LayoutInflater.from(context), this, true)
+    override val binding = PostListItemViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)

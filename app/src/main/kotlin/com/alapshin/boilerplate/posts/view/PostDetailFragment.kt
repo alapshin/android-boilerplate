@@ -8,14 +8,14 @@ import androidx.navigation.fragment.navArgs
 import com.alapshin.boilerplate.BuildConfig
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
-import com.alapshin.boilerplate.databinding.PostsDetailFragmentBinding
+import com.alapshin.boilerplate.databinding.PostDetailFragmentBinding
 import com.alapshin.boilerplate.posts.presentation.PostDetailViewModel
 import com.bumptech.glide.Glide
 
-class PostDetailFragment : BaseMviFragment<PostsDetailFragmentBinding, PostDetailViewModel.State>() {
+class PostDetailFragment : BaseMviFragment<PostDetailFragmentBinding, PostDetailViewModel.State>() {
     val args: PostDetailFragmentArgs by navArgs()
     override val binding by viewBinding {
-        PostsDetailFragmentBinding.inflate(layoutInflater)
+        PostDetailFragmentBinding.inflate(layoutInflater)
     }
     val postViewModel: PostDetailViewModel by viewModels { vmFactory }
 
