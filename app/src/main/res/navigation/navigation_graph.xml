@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/postDetail"
         android:name="com.alapshin.boilerplate.posts.view.PostDetailFragment"
-        android:label="PostDetailFragment">
+        android:label="PostDetail">
         <argument
             android:name="postId"
             app:argType="integer" />
