@@ -43,13 +43,8 @@ object Libraries {
     const val timber = "com.jakewharton.timber:timber:4.8.0-20190820.132740-10"
 
     const val junit = "junit:junit:4.12"
-    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val mockitoandroid = "org.mockito:mockito-android:${Versions.mockito}"
-    const val mockitokotlin = "com.nhaarman:mockito-kotlin:1.5.0"
-    const val restmock = "com.github.andrzejchm.RESTMock:android:0.3.1"
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val robolectricmultidex = "org.robolectric:shadows-multidex:${Versions.robolectric}"
-    const val robolectricsupport = "org.robolectric:shadows-supportv4:${Versions.robolectric}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val mockkandroid = "io.mockk:mockk-android:${Versions.mockk}"
 
     const val androidxtestcore = "androidx.test:core:${Versions.androidxTest}"
     const val androidxtestjunit = "androidx.test.ext:junit:1.0.0"

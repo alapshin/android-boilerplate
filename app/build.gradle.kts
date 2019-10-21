@@ -160,7 +160,7 @@ android {
         debugImplementation(Libraries.leakcanary)
 
         testImplementation(Libraries.junit)
-        testImplementation(Libraries.mockito)
+        testImplementation(Libraries.mockk)
 
         androidTestImplementation(Libraries.androidxtestcore)
         androidTestImplementation(Libraries.androidxtestjunit)
