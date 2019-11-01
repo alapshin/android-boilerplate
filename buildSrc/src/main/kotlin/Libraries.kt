@@ -6,6 +6,8 @@ object Libraries {
     const val androidxrecyclerview = "androidx.recyclerview:recyclerview:1.0.0"
     const val materialdesign = "com.google.android.material:material:1.1.0-beta01"
 
+    const val assisstedinject = "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.assisstedinject}"
+    const val assisstedinjectprocessor = "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.assisstedinject}"
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.10.1@aar"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggercompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
@@ -21,6 +23,7 @@ object Libraries {
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecyclecommon = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val lifecyclereactivektx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.lifecycle}"
+    const val lifecyclesavedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc01"
     const val kotlinstdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
     const val moshicodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
@@ -41,6 +44,8 @@ object Libraries {
     const val swipetorefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.2.1"
     const val timber = "com.jakewharton.timber:timber:4.8.0-20190820.132740-10"
+    const val viewmodelinject = "com.vikingsen.inject:viewmodel-inject:${Versions.viewmodelinject}"
+    const val viewmodelinjectprocessor = "com.vikingsen.inject:viewmodel-inject-processor:${Versions.viewmodelinject}"
 
     const val junit = "junit:junit:4.12"
     const val mockk = "io.mockk:mockk:${Versions.mockk}"

@@ -1,5 +1,6 @@
 package com.alapshin.boilerplate.posts.presentation
 
+import androidx.lifecycle.SavedStateHandle
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.data.PostRepository
 import com.alapshin.mvi.MviEvent
@@ -7,12 +8,15 @@ import com.alapshin.mvi.MviState
 import com.alapshin.mvi.Processor
 import com.alapshin.mvi.Reducer
 import com.alapshin.mvi.RxMviViewModel
+import com.squareup.inject.assisted.Assisted
+import com.vikingsen.inject.viewmodel.ViewModelInject
 import io.reactivex.ObservableTransformer
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class PostDetailViewModel @Inject constructor(private val repository: PostRepository) :
-    RxMviViewModel<PostDetailViewModel.Event, PostDetailViewModel.State>() {
+class PostDetailViewModel @ViewModelInject constructor(
+    private val repository: PostRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : RxMviViewModel<PostDetailViewModel.Event, PostDetailViewModel.State>() {
 
     sealed class Event : MviEvent {
         data class Get(val id: Int) : Event()

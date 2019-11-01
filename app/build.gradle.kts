@@ -120,6 +120,8 @@ android {
         implementation(Libraries.androidxrecyclerview)
         implementation(Libraries.materialdesign)
 
+        compileOnly(Libraries.assisstedinject)
+        kapt(Libraries.assisstedinjectprocessor)
         implementation(Libraries.crashlytics) {
             isTransitive = true
         }
@@ -137,6 +139,7 @@ android {
         implementation(Libraries.lifecycle)
         implementation(Libraries.lifecyclecommon)
         implementation(Libraries.lifecyclereactivektx)
+        implementation(Libraries.lifecyclesavedstate)
         implementation(Libraries.moshi)
         kapt(Libraries.moshicodegen)
         implementation(Libraries.navigationuiktx)
@@ -156,6 +159,8 @@ android {
         implementation(Libraries.swipetorefreshlayout)
         implementation(Libraries.threetenabp)
         implementation(Libraries.timber)
+        implementation(Libraries.viewmodelinject)
+        kapt(Libraries.viewmodelinjectprocessor)
 
         debugImplementation(Libraries.leakcanary)
 

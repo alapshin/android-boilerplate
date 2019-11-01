@@ -8,7 +8,7 @@ import dagger.android.ContributesAndroidInjector
 interface MainActivityModule {
     @ContributesAndroidInjector(modules = [
         PostsModule::class,
-        ViewModelFactoryModule::class
+        ViewModelModule::class
     ])
     fun contributeMainActivity(): MainActivity
 }

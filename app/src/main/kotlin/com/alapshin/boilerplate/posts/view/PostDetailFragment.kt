@@ -17,7 +17,7 @@ class PostDetailFragment : BaseMviFragment<PostDetailFragmentBinding, PostDetail
     override val binding by viewBinding {
         PostDetailFragmentBinding.inflate(layoutInflater)
     }
-    val postViewModel: PostDetailViewModel by viewModels { vmFactory }
+    val postViewModel: PostDetailViewModel by viewModels { vmFactory.create(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

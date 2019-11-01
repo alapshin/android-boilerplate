@@ -1,5 +1,6 @@
 package com.alapshin.boilerplate.posts.presentation
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.paging.PagedList
 import com.alapshin.boilerplate.common.paging.ListingFactory
 import com.alapshin.boilerplate.common.paging.NetworkState
@@ -11,15 +12,18 @@ import com.alapshin.mvi.MviState
 import com.alapshin.mvi.Processor
 import com.alapshin.mvi.Reducer
 import com.alapshin.mvi.RxMviViewModel
+import com.squareup.inject.assisted.Assisted
+import com.vikingsen.inject.viewmodel.ViewModelInject
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class PostListViewModel @Inject constructor(private val dataSourceFactory: PostDataSourceFactory) :
-    RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>() {
+class PostListViewModel @ViewModelInject constructor(
+    private val dataSourceFactory: PostDataSourceFactory,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>() {
 
     sealed class Event : MviEvent {
         class Idle : Event()

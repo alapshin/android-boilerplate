@@ -17,7 +17,7 @@ class PostListFragment : BaseMviFragment<PostListFragmentBinding, PostListViewMo
     override val binding by viewBinding {
         PostListFragmentBinding.inflate(layoutInflater)
     }
-    private val postViewModel: PostListViewModel by viewModels { vmFactory }
+    private val postViewModel: PostListViewModel by viewModels { vmFactory.create(this) }
 
     private val adapter = PostAdapter()
 

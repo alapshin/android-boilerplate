@@ -3,6 +3,7 @@ object Versions {
     const val compileSdk = 29
     const val targetSdk = 29
 
+    const val assisstedinject = "0.5.0"
     const val dagger = "2.25.2"
     const val detekt = "1.1.1"
     const val espresso = "3.2.0"
@@ -17,6 +18,7 @@ object Versions {
     const val paging = "2.1.0"
     const val retrofit = "2.6.2"
     const val robolectric = "4.0"
+    const val viewmodelinject = "0.3.2-rc01"
 
     const val androidxTest = "1.2.0"
 }
