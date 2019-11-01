@@ -47,7 +47,7 @@ object Libraries {
     const val mockkandroid = "io.mockk:mockk-android:${Versions.mockk}"
 
     const val androidxtestcore = "androidx.test:core:${Versions.androidxTest}"
-    const val androidxtestjunit = "androidx.test.ext:junit:1.0.0"
+    const val androidxtestjunit = "androidx.test.ext:junit:1.1.1"
     const val androidxtestrunner = "androidx.test:runner:${Versions.androidxTest}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val espressocontrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
