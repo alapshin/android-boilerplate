@@ -16,7 +16,7 @@ open class Consumable<out T>(private val value: T) {
     /**
      * Returns the value and prevents its use again.
      */
-    fun getUnconsumed(): T? {
+    fun consumeValue(): T? {
         return if (consumed) {
             null
         } else {
