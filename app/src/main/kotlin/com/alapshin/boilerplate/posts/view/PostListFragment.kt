@@ -2,6 +2,7 @@ package com.alapshin.boilerplate.posts.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -9,6 +10,7 @@ import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.common.recyclerview.OnItemClickListener
 import com.alapshin.boilerplate.databinding.PostListFragmentBinding
+import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.presentation.PostListViewModel
 import com.alapshin.boilerplate.posts.widget.PostAdapter
@@ -51,14 +53,18 @@ class PostListFragment : BaseMviFragment<PostListFragmentBinding, PostListViewMo
     }
 
     override fun render(state: PostListViewModel.State) {
-        if (state.posts != null) {
+        LogUtil.d("State " + state.progress + " " + state.posts?.size)
+        if (state.progress) {
+            val initial = state.posts?.isEmpty() == true
+            val refresh = binding.postsListSwipeLayout.isRefreshing
+            if (initial && !refresh) {
+                binding.postsListProgressBar.show()
+            }
+        } else if (state.posts != null) {
             adapter.submitList(state.posts)
-        }
-        if (!state.progress) {
+            binding.postsListEmptyMessage.isVisible = state.posts.isEmpty()
             binding.postsListProgressBar.hide()
             binding.postsListSwipeLayout.isRefreshing = false
-        } else if (state.posts?.isEmpty() == true) {
-            binding.postsListProgressBar.show()
         }
     }
 }

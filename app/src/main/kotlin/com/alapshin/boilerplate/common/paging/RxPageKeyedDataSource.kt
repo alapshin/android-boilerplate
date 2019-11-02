@@ -30,8 +30,8 @@ abstract class RxPageKeyedDataSource<Key, Value>(private val disposables: Compos
         networkState.accept(NetworkState.Loading())
         disposables.add(load.data.subscribe(
             { data ->
-                networkState.accept(NetworkState.Success())
                 callback.onResult(data, load.adjacentPageKey)
+                networkState.accept(NetworkState.Success())
             },
             { error -> networkState.accept(NetworkState.Error(error)) }
         ))
@@ -45,8 +45,8 @@ abstract class RxPageKeyedDataSource<Key, Value>(private val disposables: Compos
         networkState.accept(NetworkState.Loading())
         disposables.add(load.data.subscribe(
             { data ->
-                networkState.accept(NetworkState.Success())
                 callback.onResult(data, load.previousPageKey, load.nextPageKey)
+                networkState.accept(NetworkState.Success())
             },
             { error -> networkState.accept(NetworkState.Error(error)) }
         ))
