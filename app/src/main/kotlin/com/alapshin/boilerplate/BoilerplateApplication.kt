@@ -15,7 +15,6 @@ import dagger.android.DispatchingAndroidInjector
 import com.alapshin.boilerplate.log.CrashlyticsTree
 import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.log.LogcatTree
-import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
 import java.io.IOException
@@ -113,8 +112,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
                     .uncaughtException(Thread.currentThread(), e)
                 return@setErrorHandler
             }
-            val ex = if (e is UndeliverableException) e.cause else e
-            LogUtil.e("Undeliverable exception received, not sure what to do", ex)
+            LogUtil.e("Undeliverable exception received, not sure what to do", e)
         }
     }
 }

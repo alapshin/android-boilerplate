@@ -16,12 +16,11 @@ import java.util.regex.Pattern
  */
 open class LogcatTree(vararg ignoredFqcn: String) : Timber.Tree() {
     private val fqcnIgnore = mutableSetOf(
-        ignoredFqcn,
         Timber::class.java.name,
         Timber.Forest::class.java.name,
         Timber.Tree::class.java.name,
         LogcatTree::class.java.name
-    )
+    ) + ignoredFqcn.toSet()
 
     /**
      * Extract the tag which should be used for the message from the `element`. By default
