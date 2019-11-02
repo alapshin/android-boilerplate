@@ -2,10 +2,12 @@ package com.alapshin.boilerplate.posts.data
 
 import androidx.paging.PagedList
 import com.alapshin.boilerplate.common.paging.RxPageKeyedDataSource
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class PostDataSource constructor(disposables: CompositeDisposable, private val repository: PostRepository) :
-    RxPageKeyedDataSource<Int, Post>(disposables) {
+    RxPageKeyedDataSource<Int, Post, List<Post>>(disposables) {
+
     companion object {
         val CONFIG = PagedList.Config.Builder()
             .setPageSize(10)
@@ -14,11 +16,22 @@ class PostDataSource constructor(disposables: CompositeDisposable, private val r
             .build()
     }
 
-    override fun createLoad(params: LoadParams<Int>): Load<Int, Post> {
-        return Load(repository.getPosts(params.key), params.key + 1)
+    override fun createResponse(params: LoadParams<Int>): Single<List<Post>> {
+        return repository.getPosts(params.key)
     }
 
-    override fun createInitialLoad(params: LoadInitialParams<Int>): InitialLoad<Int, Post> {
-        return InitialLoad(repository.getPosts(1), null, null, previousPageKey = null, nextPageKey = 2)
+    override fun parseResponse(params: LoadParams<Int>, response: List<Post>): CallbackArgs<Int, Post> {
+        val adjacentPageKey = if (response.isEmpty()) null else params.key + 1
+        return CallbackArgs(response, adjacentPageKey = adjacentPageKey)
+    }
+
+    override fun createInitialResponse(params: LoadInitialParams<Int>): Single<List<Post>> {
+        return repository.getPosts(1)
+    }
+
+    override fun parseInitialResponse(params: LoadInitialParams<Int>, response: List<Post>):
+        InitialCallbackArgs<Int, Post> {
+        val nextPageKey = if (response.isEmpty()) null else 2
+        return InitialCallbackArgs(response, null, null, previousPageKey = null, nextPageKey = nextPageKey)
     }
 }
