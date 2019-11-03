@@ -1,6 +1,5 @@
 package com.alapshin.mvi
 
-import androidx.lifecycle.MutableLiveData
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,9 +9,7 @@ import io.reactivex.disposables.Disposable
 typealias Reducer<S> = (state1: S, state2: S) -> S
 typealias Processor<E, S> = (events: Observable<E>) -> Observable<S>
 
-abstract class RxMviViewModel<E : MviEvent, S : MviState> : MviViewModel<E, S>() {
-    override val state: MutableLiveData<S> = MutableLiveData<S>()
-
+abstract class RxMviViewModel<E : MviEvent, S : MviState> : BaseMviViewModel<E, S>() {
     protected val disposables = CompositeDisposable()
     protected val eventRelay: BehaviorRelay<E> = BehaviorRelay.create()
     protected val stateRelay: BehaviorRelay<S> = BehaviorRelay.create()
@@ -27,7 +24,7 @@ abstract class RxMviViewModel<E : MviEvent, S : MviState> : MviViewModel<E, S>()
 
         addDisposable(stateRelay
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { state.value = it }
+            .subscribe { setState(it) }
         )
     }
 

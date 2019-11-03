@@ -1,9 +1,9 @@
 package com.alapshin.mvi
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 
-abstract class MviViewModel<E : MviEvent, S : MviState> : ViewModel() {
-    abstract val state: LiveData<S>
-    abstract fun dispatch(event: E)
+interface MviViewModel<E : MviEvent, S : MviState> {
+    val state: LiveData<S>
+    fun dispatch(event: E)
+    fun setState(state: S)
 }
