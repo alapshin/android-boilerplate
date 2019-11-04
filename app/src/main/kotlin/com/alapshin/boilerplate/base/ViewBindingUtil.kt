@@ -15,7 +15,9 @@ fun <V : ViewBinding> AppCompatActivity.viewBinding(initializer: () -> V):
     ReadOnlyProperty<Any, V> = LifecycleAwareLazy(initializer)
 
 /**
- * Lifecycle aware implementation of [Lazy]
+ * Lifecycle-aware implementation of [Lazy]
+ *
+ * Lazily initialized value is reset when corresponding lifecycle owner is destroyed
  */
 private class LifecycleAwareLazy<T, V>(private val initializer: () -> V) :
     ReadOnlyProperty<T, V>, LifecycleObserver {
@@ -31,7 +33,7 @@ private class LifecycleAwareLazy<T, V>(private val initializer: () -> V) :
         return value as V
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun destroy() {
         value = null
     }
