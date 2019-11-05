@@ -4,7 +4,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.StrictMode
 import androidx.multidex.MultiDexApplication
-import com.alapshin.boilerplate.di.AppInjector
+import com.alapshin.boilerplate.di.components.DaggerApplicationComponent
 
 import com.crashlytics.android.Crashlytics
 import dagger.android.AndroidInjector
@@ -43,7 +43,11 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
     }
 
     private fun setupDagger() {
-        AppInjector.init(this)
+        DaggerApplicationComponent.builder()
+            .context(this)
+            .application(this)
+            .build()
+            .inject(this)
     }
 
     private fun setupLogging() {
