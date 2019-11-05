@@ -9,14 +9,19 @@ open class Consumable<out T>(private val value: T) {
     private var consumed = false
 
     /**
-     * Returns the value, even if it's already been consumed.
+     * Return true if value was consumed, otherwise false.
      */
-    fun peekValue(): T = value
+    fun isConsumed() = consumed
 
     /**
-     * Returns the value and prevents its use again.
+     * Return the value, even if it's already been consumed.
      */
-    fun consumeValue(): T? {
+    fun peek(): T = value
+
+    /**
+     * Return the value and mark it as consumed. If value has been already consumed returns null.
+     */
+    fun consume(): T? {
         return if (consumed) {
             null
         } else {
