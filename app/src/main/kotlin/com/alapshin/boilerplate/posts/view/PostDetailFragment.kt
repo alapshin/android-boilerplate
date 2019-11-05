@@ -1,7 +1,9 @@
 package com.alapshin.boilerplate.posts.view
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -12,9 +14,9 @@ import com.alapshin.boilerplate.databinding.PostDetailFragmentBinding
 import com.alapshin.boilerplate.posts.presentation.PostDetailViewModel
 import com.bumptech.glide.Glide
 
-class PostDetailFragment : BaseMviFragment<PostDetailFragmentBinding, PostDetailViewModel.State>() {
+class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
     val args: PostDetailFragmentArgs by navArgs()
-    override val binding by viewBinding {
+    private val binding by viewBinding {
         PostDetailFragmentBinding.inflate(layoutInflater)
     }
     val postViewModel: PostDetailViewModel by viewModels { vmFactory.create(this) }
@@ -24,6 +26,10 @@ class PostDetailFragment : BaseMviFragment<PostDetailFragmentBinding, PostDetail
         if (savedInstanceState == null) {
             postViewModel.dispatch(PostDetailViewModel.Event.Get(args.postId))
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

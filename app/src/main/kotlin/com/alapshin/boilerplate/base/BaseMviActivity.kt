@@ -1,6 +1,6 @@
 package com.alapshin.boilerplate.base
 
-import androidx.viewbinding.ViewBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.alapshin.mvi.MviState
 import com.alapshin.mvi.MviView
 import com.vikingsen.inject.viewmodel.savedstate.SavedStateViewModelFactory
@@ -9,7 +9,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-abstract class BaseMviActivity<VB : ViewBinding, S : MviState> : BaseActivity<VB>(), MviView<S>, HasAndroidInjector {
+abstract class BaseMviActivity<S : MviState> : AppCompatActivity(), MviView<S>, HasAndroidInjector {
     @Inject
     protected lateinit var vmFactory: SavedStateViewModelFactory.Factory
     @Inject
