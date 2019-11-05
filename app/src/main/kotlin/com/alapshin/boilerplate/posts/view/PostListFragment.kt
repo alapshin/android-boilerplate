@@ -1,7 +1,9 @@
 package com.alapshin.boilerplate.posts.view
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,19 +17,22 @@ import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.presentation.PostListViewModel
 import com.alapshin.boilerplate.posts.widget.PostAdapter
 
-class PostListFragment : BaseMviFragment<PostListFragmentBinding, PostListViewModel.State>() {
-    override val binding by viewBinding {
+class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
+    private val adapter = PostAdapter()
+    private val binding by viewBinding {
         PostListFragmentBinding.inflate(layoutInflater)
     }
     private val postViewModel: PostListViewModel by viewModels { vmFactory.create(this) }
-
-    private val adapter = PostAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             postViewModel.dispatch(PostListViewModel.Event.Idle())
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
