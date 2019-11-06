@@ -15,11 +15,11 @@ import com.alapshin.boilerplate.posts.presentation.PostDetailViewModel
 import com.bumptech.glide.Glide
 
 class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
-    val args: PostDetailFragmentArgs by navArgs()
+    private val args: PostDetailFragmentArgs by navArgs()
     private val binding by viewBinding {
         PostDetailFragmentBinding.inflate(layoutInflater)
     }
-    val postViewModel: PostDetailViewModel by viewModels { vmFactory.create(this) }
+    private val postViewModel: PostDetailViewModel by viewModels { vmFactory.create(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +42,11 @@ class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
 
     override fun render(state: PostDetailViewModel.State) {
         if (state.post != null) {
-            binding.postsDetailBody.text = state.post.body
-            binding.postsDetailTitle.text = state.post.title
+            binding.postDetailBody.text = state.post.body
+            binding.postDetailTitle.text = state.post.title
             Glide.with(this)
                 .load(String.format(BuildConfig.IMAGE_URL, state.post.id))
-                .into(binding.postsDetailImage)
+                .into(binding.postDetailImage)
         }
     }
 }

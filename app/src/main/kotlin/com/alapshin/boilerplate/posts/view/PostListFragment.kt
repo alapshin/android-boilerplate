@@ -38,7 +38,7 @@ class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.postsListRecyclerview.adapter = adapter
+        binding.postListRecyclerview.adapter = adapter
         adapter.onItemClickListener = object : OnItemClickListener<Post> {
             override fun onItemClick(item: Post?, position: Int) {
                 item?.let {
@@ -48,7 +48,7 @@ class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
                 }
             }
         }
-        binding.postsListSwipeLayout.setOnRefreshListener {
+        binding.postListSwipeLayout.setOnRefreshListener {
             postViewModel.dispatch(PostListViewModel.Event.Refresh())
         }
 
@@ -61,15 +61,15 @@ class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
         LogUtil.d("State " + state.progress + " " + state.posts?.size)
         if (state.progress) {
             val initial = state.posts?.isEmpty() == true
-            val refresh = binding.postsListSwipeLayout.isRefreshing
+            val refresh = binding.postListSwipeLayout.isRefreshing
             if (initial && !refresh) {
-                binding.postsListProgressBar.show()
+                binding.postListProgressBar.show()
             }
         } else if (state.posts != null) {
             adapter.submitList(state.posts)
-            binding.postsListEmptyMessage.isVisible = state.posts.isEmpty()
-            binding.postsListProgressBar.hide()
-            binding.postsListSwipeLayout.isRefreshing = false
+            binding.postListEmptyMessage.isVisible = state.posts.isEmpty()
+            binding.postListProgressBar.hide()
+            binding.postListSwipeLayout.isRefreshing = false
         }
     }
 }

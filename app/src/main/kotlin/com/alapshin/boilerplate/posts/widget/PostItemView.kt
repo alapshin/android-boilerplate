@@ -20,10 +20,10 @@ class PostItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
     }
 
     fun setItem(item: Post) {
-        binding.postsListItemBody.text = item.body
-        binding.postsListItemTitle.text = item.title
+        binding.postListItemBody.text = item.body
+        binding.postListItemTitle.text = item.title
         Glide.with(this)
             .load(String.format(BuildConfig.IMAGE_URL, item.id))
-            .into(binding.postsListItemImage)
+            .into(binding.postListItemImage)
     }
 }
