@@ -7,9 +7,6 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("androidx.navigation.safeargs.kotlin")
 
-    id("deps-updates")
-    id("detekt-configuration")
-
     id("io.fabric")
     id("com.github.triplet.play")
 }
@@ -130,7 +127,6 @@ android {
         implementation(Libraries.daggerandroidsupport)
         kapt(Libraries.daggercompiler)
         kapt(Libraries.daggerandroidprocessor)
-        detektPlugins(Libraries.detektformatting)
         implementation(Libraries.firebasecore)
         implementation(Libraries.glide)
         kapt(Libraries.glidecompiler)
@@ -174,5 +170,11 @@ android {
         androidTestImplementation(Libraries.espressocontrib)
         androidTestImplementation(Libraries.espressointents)
         androidTestImplementation(Libraries.espressookhttpidlingresource)
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force(Libraries.assisstedinject)
     }
 }

@@ -2,9 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
-
-    id("deps-updates")
-    id("detekt-configuration")
 }
 
 android {
@@ -43,8 +40,6 @@ android {
         implementation(Libraries.rxkotlin)
         implementation(Libraries.rxandroid)
         implementation(Libraries.rxrelay)
-
-        detektPlugins(Libraries.detektformatting)
 
         testImplementation(Libraries.junit)
         
