@@ -36,8 +36,8 @@ subprojects {
     }
     detekt {
         input = project.files("src/main/java", "src/main/kotlin")
+        buildUponDefaultConfig = true
         config = rootProject.files("detekt-config.yml")
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
         reports {
             xml {
                 enabled = true

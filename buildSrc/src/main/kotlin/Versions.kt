@@ -5,7 +5,7 @@ object Versions {
 
     const val assisstedinject = "0.5.2"
     const val dagger = "2.25.3"
-    const val detekt = "1.1.1"
+    const val detekt = "1.3.0"
     const val espresso = "3.2.0"
     const val glide = "4.10.0"
     const val kotlin = "1.3.61"

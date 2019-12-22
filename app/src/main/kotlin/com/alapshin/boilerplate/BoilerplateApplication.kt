@@ -58,6 +58,7 @@ class BoilerplateApplication : MultiDexApplication(), HasAndroidInjector {
         }
     }
 
+    @Suppress("MagicNumber")
     private fun setupStrictMode() {
         val vmBuilder = StrictMode.VmPolicy.Builder()
                 .penaltyLog()
