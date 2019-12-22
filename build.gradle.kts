@@ -4,13 +4,13 @@ plugins {
     id("com.github.ben-manes.versions") version "0.27.0"
     id("io.gitlab.arturbosch.detekt") version Versions.detekt
 
-    id("com.android.application") version "3.6.0-beta04" apply false
+    id("com.android.application") version "3.6.0-rc01" apply false
     id("org.jetbrains.kotlin.android") version Versions.kotlin apply false
     id("org.jetbrains.kotlin.kapt") version Versions.kotlin apply false
-    id("androidx.navigation.safeargs.kotlin") version "2.1.0" apply false
+    id("androidx.navigation.safeargs.kotlin") version Versions.navigation apply false
 
     id("io.fabric") version "1.31.2" apply false
-    id("com.github.triplet.play") version "2.5.0" apply false
+    id("com.github.triplet.play") version "2.6.1" apply false
 }
 
 allprojects {
