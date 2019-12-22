@@ -19,6 +19,12 @@ allprojects {
         jcenter()
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
     }
+
+    tasks.withType<DependencyUpdatesTask>  {
+        rejectVersionIf {
+            isNonStable(candidate.version) && !isNonStable(currentVersion)
+        }
+    }
 }
 
 subprojects {
@@ -41,12 +47,6 @@ subprojects {
                 enabled = true
                 destination = project.file("build/reports/detekt/report.html")
             }
-        }
-    }
-
-    tasks.withType<DependencyUpdatesTask>  {
-        rejectVersionIf {
-            isNonStable(candidate.version) && !isNonStable(currentVersion)
         }
     }
 
