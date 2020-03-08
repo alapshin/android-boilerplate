@@ -13,5 +13,5 @@ style:
 empty-blocks:
   EmptyFunctionBlock:
     active: true
-    ignoreOverriddenFunctions: true
+    ignoreOverridden: true
 
