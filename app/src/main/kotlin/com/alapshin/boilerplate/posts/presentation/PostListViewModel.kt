@@ -7,11 +7,11 @@ import com.alapshin.boilerplate.common.paging.NetworkState
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.data.PostDataSource
 import com.alapshin.boilerplate.posts.data.PostDataSourceFactory
-import com.alapshin.mvi.MviEvent
-import com.alapshin.mvi.MviState
-import com.alapshin.mvi.Processor
-import com.alapshin.mvi.Reducer
-import com.alapshin.mvi.RxMviViewModel
+import com.happify.mvi.core.MviEvent
+import com.happify.mvi.core.MviState
+import com.happify.mvi.rx.Processor
+import com.happify.mvi.rx.Reducer
+import com.happify.mvi.rx.RxMviViewModel
 import com.squareup.inject.assisted.Assisted
 import com.vikingsen.inject.viewmodel.ViewModelInject
 import io.reactivex.Observable
@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers
 class PostListViewModel @ViewModelInject constructor(
     private val dataSourceFactory: PostDataSourceFactory,
     @Assisted private val savedStateHandle: SavedStateHandle
-) : RxMviViewModel<PostListViewModel.Event, PostListViewModel.State>() {
+) : RxMviViewModel<PostListViewModel.State>() {
 
     sealed class Event : MviEvent {
         class Idle : Event()
@@ -36,13 +36,9 @@ class PostListViewModel @ViewModelInject constructor(
         val posts: PagedList<Post>? = null
     ) : MviState
 
-    init {
-        start()
-    }
-
-    override fun dispatch(event: Event) {
+    override fun process(event: MviEvent) {
         if (event is Event.Idle) {
-            super.dispatch(event)
+            super.process(event)
         } else {
             dataSourceFactory.invalidate()
         }
@@ -52,7 +48,7 @@ class PostListViewModel @ViewModelInject constructor(
         return { state1, state2 -> state2 }
     }
 
-    override fun processor(): Processor<Event, State> {
+    override fun processor(): Processor<State> {
         dataSourceFactory.disposables = disposables
         val listing = ListingFactory.createListing(
             PostDataSource.CONFIG,
@@ -60,7 +56,7 @@ class PostListViewModel @ViewModelInject constructor(
             AndroidSchedulers.mainThread(),
             dataSourceFactory
         )
-        val idleTransformer = ObservableTransformer<Event.Idle, State> {
+        val idleTransformer = ObservableTransformer<MviEvent.Default, State> {
             it.switchMap { event ->
                 Observable.combineLatest(listing.list, listing.networkState,
                     BiFunction<PagedList<Post>, NetworkState, State>
@@ -70,6 +66,6 @@ class PostListViewModel @ViewModelInject constructor(
             }
         }
 
-        return { events -> events.ofType(Event.Idle::class.java).compose(idleTransformer) }
+        return { events -> events.ofType(MviEvent.Default::class.java).compose(idleTransformer) }
     }
 }

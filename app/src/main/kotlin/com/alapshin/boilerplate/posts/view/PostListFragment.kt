@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.alapshin.boilerplate.base.BaseMviFragment
 import com.alapshin.boilerplate.base.viewBinding
@@ -16,6 +15,7 @@ import com.alapshin.boilerplate.log.LogUtil
 import com.alapshin.boilerplate.posts.data.Post
 import com.alapshin.boilerplate.posts.presentation.PostListViewModel
 import com.alapshin.boilerplate.posts.widget.PostAdapter
+import com.happify.mvi.core.bind
 
 class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
     private val adapter = PostAdapter()
@@ -24,19 +24,14 @@ class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
     }
     private val postViewModel: PostListViewModel by viewModels { vmFactory.create(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            postViewModel.dispatch(PostListViewModel.Event.Idle())
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        bind(this, postViewModel)
 
         binding.postListRecyclerview.adapter = adapter
         adapter.onItemClickListener = object : OnItemClickListener<Post> {
@@ -49,12 +44,8 @@ class PostListFragment : BaseMviFragment<PostListViewModel.State>() {
             }
         }
         binding.postListSwipeLayout.setOnRefreshListener {
-            postViewModel.dispatch(PostListViewModel.Event.Refresh())
+            postViewModel.process(PostListViewModel.Event.Refresh())
         }
-
-        postViewModel.state.observe(viewLifecycleOwner, Observer<PostListViewModel.State> {
-            render(it)
-        })
     }
 
     override fun render(state: PostListViewModel.State) {

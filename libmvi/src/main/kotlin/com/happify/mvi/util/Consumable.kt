@@ -1,4 +1,4 @@
-package com.alapshin.mvi
+package com.happify.mvi.util
 
 /**
  * Wrapper for data exposed via a LiveData that should be used only once

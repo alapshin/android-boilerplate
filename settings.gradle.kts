@@ -1,6 +1,6 @@
 rootProject.buildFileName = "build.gradle.kts"
 
-include(":app", ":mvi")
+include(":app", ":libmvi")
 
 pluginManagement {
     repositories {

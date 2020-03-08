@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.alapshin.boilerplate.BuildConfig
 import com.alapshin.boilerplate.base.BaseMviFragment
@@ -13,6 +12,7 @@ import com.alapshin.boilerplate.base.viewBinding
 import com.alapshin.boilerplate.databinding.PostDetailFragmentBinding
 import com.alapshin.boilerplate.posts.presentation.PostDetailViewModel
 import com.bumptech.glide.Glide
+import com.happify.mvi.core.bind
 
 class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
     private val args: PostDetailFragmentArgs by navArgs()
@@ -24,7 +24,7 @@ class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            postViewModel.dispatch(PostDetailViewModel.Event.Get(args.postId))
+            postViewModel.process(PostDetailViewModel.Event.Get(args.postId))
         }
     }
 
@@ -35,9 +35,7 @@ class PostDetailFragment : BaseMviFragment<PostDetailViewModel.State>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postViewModel.state.observe(viewLifecycleOwner, Observer {
-            render(it)
-        })
+        bind(this, postViewModel)
     }
 
     override fun render(state: PostDetailViewModel.State) {

@@ -108,7 +108,7 @@ android {
     }
 
     dependencies {
-        implementation(project(":mvi"))
+        implementation(project(":libmvi"))
 
         implementation(Libraries.androidxcorektx)
         implementation(Libraries.androidxconstraintlayout)

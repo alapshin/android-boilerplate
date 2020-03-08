@@ -4,6 +4,12 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
+kotlin {
+    sourceSets.configureEach {
+        languageSettings.progressiveMode = true
+    }
+}
+
 android {
     compileSdkVersion(Versions.compileSdk)
 
@@ -17,6 +23,7 @@ android {
     }
 
     sourceSets["main"].java.srcDir("src/main/kotlin")
+    sourceSets["test"].java.srcDirs("src/test/kotlin")
 
     defaultConfig {
         minSdkVersion(Versions.minSdk)
@@ -31,20 +38,21 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+}
 
-    dependencies {
-        implementation(Libraries.lifecycle)
-        implementation(Libraries.kotlinstdlib)
+dependencies {
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.lifecyclecommon)
+    implementation(Libraries.kotlinstdlib)
 
-        implementation(Libraries.rxjava)
-        implementation(Libraries.rxkotlin)
-        implementation(Libraries.rxandroid)
-        implementation(Libraries.rxrelay)
+    implementation(Libraries.rxjava)
+    implementation(Libraries.rxkotlin)
+    implementation(Libraries.rxandroid)
+    implementation(Libraries.rxrelay)
 
-        testImplementation(Libraries.junit)
-        
-        androidTestImplementation(Libraries.androidxtestcore)
-        androidTestImplementation(Libraries.androidxtestjunit)
-        androidTestImplementation(Libraries.androidxtestrunner)
-    }
+    testImplementation(Libraries.junit)
+
+    androidTestImplementation(Libraries.androidxtestcore)
+    androidTestImplementation(Libraries.androidxtestjunit)
+    androidTestImplementation(Libraries.androidxtestrunner)
 }

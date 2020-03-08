@@ -1,4 +1,4 @@
-package com.alapshin.mvi
+package com.happify.mvi
 
 import org.junit.Test
 
